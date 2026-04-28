@@ -25,4 +25,14 @@ Then open `/` and `/el-ultimo/`.
 
 ## GitHub
 
-Remote: [The-Website-Dealer](https://github.com/Hopefully-Abysmal/The-Website-Dealer.git). After the first push, connect the custom subdomain in your DNS and host (Cloudflare Pages, Netlify, GitHub Pages, etc.) to the repository root.
+Remote: [The-Website-Dealer](https://github.com/Hopefully-Abysmal/The-Website-Dealer.git).
+
+## Deploy (GitHub Actions → FTP)
+
+On every push to **`master`**, [.github/workflows/deploy-ftp.yml](.github/workflows/deploy-ftp.yml) uploads the static tree (minus `.git`, `.github`, root `README.md`, `.gitignore`) to your host for **twd.hopefullyabysmal.com**.
+
+**Repository secrets:** `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD` (Settings → Secrets and variables → Actions). If the FTP session lands in the wrong directory, add `server-dir: ...` under `with:` in the workflow to match the subdomain’s document root in SiteGround.
+
+## DNS
+
+Point **twd.hopefullyabysmal.com** at the same host; document root = this repo’s deployed files.
