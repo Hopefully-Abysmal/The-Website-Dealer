@@ -7,7 +7,13 @@ Static portal for properties under **Hopefully Abysmal LLC** (e.g. `twd.hopefull
 - `index.html` — hub listing each site.
 - `el-ultimo/index.html` — merged launch page: **el-ultimo v2** narrative + gunmetal/silver/bronze/blood palette and armor textures from the folio, plus a **family / Uncle Daniel** block.
 - `el-ultimo/studio.html` — tabbed folio (landing mock, shop, packaging, checklist).
-- `el-ultimo/atlas.html` — fragrance web design research, skinned to the same type palette as El Último.
+- `el-ultimo/atlas.html` — fragrance industry reference (comparative analysis), same type palette as El Último.
+- `ha-apex/index.html` — stub for Hopefully Abysmal LLC apex marketing.
+- `byod/index.html` — BYOD landing placeholder.
+- `c/demo-client/index.html` — proves `/c/<slug>/` client path pattern.
+- `desire-paths/index.html` — placeholder for Desire Paths × El Último music side.
+
+This repo is **Hopefully Abysmal / TWD only** — no separate foundation or other product sites here.
 
 ## Serve locally
 
