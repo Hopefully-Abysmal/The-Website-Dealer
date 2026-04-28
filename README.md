@@ -4,7 +4,7 @@ Static portal for properties under **Hopefully Abysmal LLC** (e.g. `twd.hopefull
 
 ## Layout
 
-- `index.html` — hub listing each site.
+- `index.html` — **The Website Dealer** homepage (deploy this at the document root for `twd.hopefullyabysmal.com` so `/` serves the portal).
 - `el-ultimo/index.html` — merged launch page: **el-ultimo v2** narrative + gunmetal/silver/bronze/blood palette and armor textures from the folio, plus a **family / Uncle Daniel** block.
 - `el-ultimo/studio.html` — tabbed folio (landing mock, shop, packaging, checklist).
 - `el-ultimo/atlas.html` — fragrance industry reference (comparative analysis), same type palette as El Último.
