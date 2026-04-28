@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Último — Hopefully Abysmal LLC</title>
+<meta name="description" content="El Último — fragrance routing and decanting. Gunmetal, silver, bronze, blood red. último de su estirpe.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+:root {
+  /* Merged: el-ultimo v2 structure + folio gunmetal / Toledo palette */
+  --void:   #0c0d0e;
+  --deep:   #111315;
+  --board:  #181b1e;
+  --trim:   #242830;
+  --dim:    #3a3f46;
+  --muted:  #5e6470;
+  --warm:   #8c9199;
+  --sand:   #b8bcc2;
+  --cream:  #e8eaec;
+  --parch:  #d4d8dc;
+  --gold:   #9a7c3a;
+  --gilt:   #b89440;
+  --blood:  #8b1a1a;
+  --king:   #a82020;
+  --rose:   #c04040;
+  --chain:  url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cellipse cx='6' cy='6' rx='4.5' ry='2.5' fill='none' stroke='%23ffffff' stroke-width='0.4' opacity='0.06'/%3E%3Cellipse cx='18' cy='6' rx='4.5' ry='2.5' fill='none' stroke='%23ffffff' stroke-width='0.4' opacity='0.06'/%3E%3Cellipse cx='12' cy='12' rx='4.5' ry='2.5' fill='none' stroke='%23ffffff' stroke-width='0.4' opacity='0.06'/%3E%3Cellipse cx='6' cy='18' rx='4.5' ry='2.5' fill='none' stroke='%23ffffff' stroke-width='0.4' opacity='0.06'/%3E%3Cellipse cx='18' cy='18' rx='4.5' ry='2.5' fill='none' stroke='%23ffffff' stroke-width='0.4' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--void);
+  color: var(--cream);
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* grain */
+body::after {
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:9999;
+}
+
+/* ── CHESS BOARD BG ── */
+#chessboard {
+  position:fixed;
+  inset:0;
+  display:grid;
+  grid-template-columns:repeat(8,1fr);
+  grid-template-rows:repeat(8,1fr);
+  pointer-events:none;
+  z-index:0;
+  opacity:0.028;
+}
+.sq.light { background: rgba(232,234,236,0.05); }
+.sq.dark  { background: transparent; }
+
+/* ── NAV ── */
+nav {
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:200;
+  padding:22px 48px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background: transparent;
+  transition: background 0.5s ease, border-color 0.5s ease, backdrop-filter 0.5s ease;
+  border-bottom: 1px solid transparent;
+}
+nav.scrolled {
+  background: rgba(12,13,14,0.94);
+  backdrop-filter: blur(16px);
+  border-bottom-color: rgba(255,255,255,0.06);
+}
+.nav-end {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  justify-content: flex-end;
+}
+.nav-links a {
+  font-family: 'Courier Prime', monospace;
+  font-size: 8px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--sand);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+.nav-links a:hover {
+  color: var(--cream);
+  border-bottom-color: var(--blood);
+}
+.nav-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+.nav-brand span {
+  color: var(--king);
+  font-style: italic;
+  font-weight: 400;
+}
+.nav-sub {
+  font-family: 'Courier Prime', monospace;
+  font-size: 8px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 48px 72px;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--chain);
+  background-size: 24px 24px;
+  opacity: 0.5;
+}
+.hero-sword {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, transparent 0%, var(--blood) 28%, var(--gold) 55%, transparent 100%);
+  opacity: 0.55;
+}
+.hero > *:not(.hero-bg) {
+  position: relative;
+  z-index: 1;
+}
+
+/* thin horizontal rule that bleeds */
+.hero-rule {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--blood) 0%, transparent 70%);
+  margin-bottom: 36px;
+  opacity: 0.5;
+  animation: ruleIn 1.4s ease 0.3s both;
+}
+@keyframes ruleIn {
+  from { transform: scaleX(0); transform-origin: left; }
+  to   { transform: scaleX(1); transform-origin: left; }
+}
+
+.hero-eyebrow {
+  font-family: 'Courier Prime', monospace;
+  font-size: 9px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--king);
+  margin-bottom: 20px;
+  animation: fadeUp 1s ease 0.5s both;
+}
+
+/* THE NAME */
+.hero-wordmark {
+  margin-bottom: 0;
+  animation: fadeUp 1.1s ease 0.65s both;
+  position: relative;
+  display: inline-block;
+}
+.hero-el {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(42px, 7.5vw, 88px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--sand);
+  line-height: 1;
+  letter-spacing: 0.06em;
+  margin-bottom: -0.08em;
+}
+.hero-ultimo {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(88px, 18vw, 210px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--parch);
+  position: relative;
+}
+/* king mark — small, high */
+.hero-ultimo::after {
+  content: '♔';
+  font-size: 0.12em;
+  color: var(--king);
+  position: absolute;
+  top: 0.12em;
+  right: -0.15em;
+  animation: crownPulse 4s ease-in-out infinite;
+  line-height: 1;
+}
+@keyframes crownPulse {
+  0%,100%{ opacity:.5; }
+  50%{ opacity:1; }
+}
+
+/* lineage line */
+.hero-lineage {
+  margin-top: 22px;
+  animation: fadeUp 1s ease 0.85s both;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.hero-lineage-rule {
+  width: 40px;
+  height: 1px;
+  background: var(--blood);
+  flex-shrink: 0;
+}
+.hero-lineage-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(14px, 2.2vw, 20px);
+  color: var(--gold);
+  letter-spacing: 0.04em;
+}
+
+/* sub copy */
+.hero-sub {
+  margin-top: 28px;
+  max-width: 560px;
+  animation: fadeUp 1s ease 1s both;
+}
+.hero-sub .es {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(16px, 2.4vw, 22px);
+  color: var(--sand);
+  line-height: 1.65;
+  display: block;
+  margin-bottom: 10px;
+}
+.hero-sub .en {
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  line-height: 1.8;
+  display: block;
+}
+
+/* ghost king bg piece */
+.hero-ghost {
+  position: absolute;
+  right: -30px;
+  bottom: -20px;
+  font-size: clamp(260px, 42vw, 540px);
+  color: var(--blood);
+  opacity: 0.03;
+  pointer-events: none;
+  line-height: 1;
+  user-select: none;
+  z-index: -1;
+  animation: fadeUp 2.5s ease 0.2s both;
+}
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(18px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ── ORNAMENTAL DIVIDER ── */
+.orn {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 48px;
+  gap: 20px;
+  margin: 0;
+}
+.orn-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--dim), transparent);
+}
+.orn-piece {
+  font-size: 13px;
+  color: var(--blood);
+  opacity: 0.5;
+}
+
+/* ── SECTION ── */
+.s {
+  position: relative;
+  z-index: 1;
+  padding: 90px 48px;
+}
+.s.tight { padding-top: 60px; padding-bottom: 60px; }
+.s.dark-bg { background: var(--deep); }
+
+.mono {
+  font-family: 'Courier Prime', monospace;
+  font-size: 8.5px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--king);
+  margin-bottom: 18px;
+}
+
+.display {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(34px, 5.5vw, 64px);
+  font-weight: 600;
+  line-height: 1.06;
+  margin-bottom: 28px;
+  letter-spacing: -0.01em;
+}
+.display em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold);
+}
+
+.prose {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--warm);
+  max-width: 600px;
+}
+.prose + .prose { margin-top: 18px; }
+.prose strong { color: var(--cream); font-weight: 700; }
+
+/* ── ORIGIN CALLOUT ── */
+.origin-block {
+  margin-top: 56px;
+  padding: 40px 44px;
+  border-left: 2px solid var(--blood);
+  background: linear-gradient(90deg, rgba(122,21,21,0.06), transparent);
+  position: relative;
+}
+.origin-block::before {
+  content: '♟';
+  position: absolute;
+  top: -12px;
+  left: 38px;
+  font-size: 11px;
+  color: var(--blood);
+  background: var(--void);
+  padding: 0 6px;
+}
+.origin-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(18px, 3vw, 26px);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--cream);
+  line-height: 1.55;
+  margin-bottom: 18px;
+}
+.origin-attribution {
+  font-family: 'Courier Prime', monospace;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.origin-attribution::before {
+  content:'';
+  width:28px;
+  height:1px;
+  background:var(--blood);
+}
+
+/* ── TIERS ── */
+.tiers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 56px;
+  border: 1px solid var(--dim);
+}
+.tier {
+  padding: 44px 32px;
+  border-right: 1px solid var(--dim);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s ease;
+}
+.tier:last-child { border-right: none; }
+.tier.featured {
+  background: rgba(122,21,21,0.07);
+  border-top: 1px solid var(--blood);
+  margin-top: -1px;
+}
+.tier:hover { background: var(--trim); }
+
+.tier-piece {
+  font-size: 32px;
+  color: var(--king);
+  opacity: 0.6;
+  margin-bottom: 20px;
+  display: block;
+  transition: opacity 0.3s;
+}
+.tier:hover .tier-piece { opacity: 0.9; }
+
+.tier-rank {
+  font-family: 'Courier Prime', monospace;
+  font-size: 8px;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.tier-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--parch);
+  margin-bottom: 16px;
+  line-height: 1;
+}
+.tier-en {
+  font-family: 'Courier Prime', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.tier-desc {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--warm);
+}
+
+/* ghost piece behind */
+.tier::after {
+  content: attr(data-piece);
+  position: absolute;
+  bottom: -16px;
+  right: 8px;
+  font-size: 90px;
+  color: var(--cream);
+  opacity: 0.025;
+  pointer-events: none;
+  transition: opacity 0.4s, transform 0.4s;
+}
+.tier:hover::after { opacity: 0.05; transform: scale(1.08); }
+
+/* ── MOVES / PROCESS ── */
+.moves {
+  margin-top: 56px;
+  counter-reset: move;
+}
+.move {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--dim);
+  padding: 32px 0;
+  align-items: start;
+  transition: background 0.3s ease;
+}
+.move:first-child { border-top: 1px solid var(--dim); }
+.move:hover { background: var(--trim); margin: 0 -16px; padding: 32px 16px; }
+
+.move-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 44px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--blood);
+  opacity: 0.4;
+  line-height: 1;
+  padding-top: 4px;
+}
+.move-content {}
+.move-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--parch);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.move-title .notation {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--king);
+  font-style: normal;
+  font-weight: 400;
+}
+.move-desc {
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--warm);
+  max-width: 580px;
+}
+
+/* ── PHILOSOPHY ── */
+.philosophy {
+  text-align: center;
+  padding: 100px 48px;
+}
+.phil-ornament {
+  font-size: 24px;
+  color: var(--blood);
+  opacity: 0.4;
+  margin-bottom: 36px;
+  letter-spacing: 0.6em;
+}
+.phil-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(22px, 4vw, 40px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--cream);
+  max-width: 720px;
+  margin: 0 auto 28px;
+  position: relative;
+}
+.phil-quote::before {
+  content: '\201C';
+  font-size: 1.6em;
+  color: var(--blood);
+  opacity: 0.35;
+  position: absolute;
+  left: -0.3em;
+  top: -0.15em;
+  line-height: 1;
+}
+.phil-lineage {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(15px, 2vw, 19px);
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.phil-attr {
+  font-family: 'Courier Prime', monospace;
+  font-size: 8px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── IDENTITY GRID ── */
+.id-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  margin-top: 56px;
+}
+.id-block {
+  margin-bottom: 36px;
+}
+.id-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 8px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--dim);
+  padding-bottom: 10px;
+  margin-bottom: 18px;
+}
+.id-value {
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--warm);
+}
+.id-value strong { color: var(--cream); }
+
+.palette-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 14px;
+}
+.swatch {
+  flex: 1;
+  height: 32px;
+  border-radius: 1px;
+  position: relative;
+}
+.swatch span {
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Courier Prime', monospace;
+  font-size: 6.5px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.voice-item {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--dim);
+}
+.voice-item:last-child { border-bottom: none; }
+.voice-tag {
+  font-family: 'Courier Prime', monospace;
+  font-size: 7.5px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--king);
+  margin-bottom: 5px;
+}
+.voice-eg {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--sand);
+  line-height: 1.5;
+}
+.voice-en {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+/* ── NAMES ── */
+.names {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--dim);
+  border: 1px solid var(--dim);
+  margin-top: 56px;
+}
+.name-card {
+  background: var(--board);
+  padding: 36px 28px;
+  transition: background 0.3s;
+}
+.name-card:hover { background: var(--trim); }
+.name-card.rec {
+  background: var(--deep);
+  border-top: 2px solid var(--king);
+}
+.name-tag {
+  font-family: 'Courier Prime', monospace;
+  font-size: 7.5px;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--blood);
+  margin-bottom: 14px;
+}
+.name-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--parch);
+  margin-bottom: 12px;
+  line-height: 1;
+}
+.name-title span { color: var(--king); }
+.name-note {
+  font-size: 12.5px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+/* ── DBA FOOTER SECTION ── */
+.dba {
+  border: 1px solid var(--dim);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  padding: 40px;
+  margin-top: 56px;
+  align-items: center;
+}
+.dba-detail {
+  font-family: 'Courier Prime', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  line-height: 2.2;
+}
+.dba-detail strong {
+  color: var(--cream);
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  font-size: 8px;
+  display: block;
+  margin-bottom: 2px;
+}
+.dba-mark {
+  text-align: right;
+}
+.dba-parent {
+  font-family: 'Courier Prime', monospace;
+  font-size: 8px;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--blood);
+  margin-bottom: 6px;
+}
+.dba-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--parch);
+  line-height: 1;
+}
+
+/* ── FOOTER ── */
+footer {
+  position: relative;
+  z-index: 1;
+  padding: 52px 48px;
+  border-top: 1px solid var(--dim);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+}
+.foot-left, .foot-right {
+  font-family: 'Courier Prime', monospace;
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 2;
+}
+.foot-right { text-align: right; }
+.foot-center {
+  text-align: center;
+}
+.foot-mark {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--parch);
+  display: block;
+  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+}
+.foot-piece {
+  font-size: 22px;
+  color: var(--king);
+  opacity: 0.4;
+}
+
+/* ── SCROLL REVEAL ── */
+.r {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.85s ease, transform 0.85s ease;
+}
+.r.v { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  nav {
+    padding: 18px 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .nav-end { align-items: flex-start; }
+  .nav-links { justify-content: flex-start; }
+  .s { padding: 64px 24px; }
+  .hero { padding: 0 24px 60px; }
+  .orn { padding: 0 24px; }
+  footer { padding: 40px 24px; grid-template-columns: 1fr; text-align: center; }
+  .foot-right { text-align: center; }
+  .tiers { grid-template-columns: 1fr; }
+  .id-grid { grid-template-columns: 1fr; gap: 0; }
+  .names { grid-template-columns: 1fr; }
+  .dba { grid-template-columns: 1fr; }
+  .dba-mark { text-align: left; }
+  .hero-ghost { display: none; }
+  .move { grid-template-columns: 48px 1fr; }
+  .hero { padding-bottom: 52px; }
+}
+</style>
+</head>
+<body>
+
+<!-- chess bg -->
+<div id="chessboard"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-brand"><span>El</span> Último</div>
+  <div class="nav-end">
+    <div class="nav-links">
+      <a href="studio.html">Studio</a>
+      <a href="atlas.html">Atlas</a>
+      <a href="../index.html">Dealer</a>
+    </div>
+    <div class="nav-sub">Hopefully Abysmal LLC · DBA</div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"><div class="hero-sword"></div></div>
+  <div class="hero-ghost">♔</div>
+  <div class="hero-rule"></div>
+  <p class="hero-eyebrow">Fragrance Routing &amp; Decanting · Est. 2025</p>
+  <div class="hero-wordmark">
+    <span class="hero-el">el</span>
+    <span class="hero-ultimo">Último</span>
+  </div>
+  <div class="hero-lineage">
+    <div class="hero-lineage-rule"></div>
+    <span class="hero-lineage-text">último de su estirpe</span>
+  </div>
+  <div class="hero-sub">
+    <span class="es">El rey que queda en pie cuando todos los demás han caído.</span>
+    <span class="en">The king left standing when all others have fallen. — A fragrance routing &amp; decanting service for people who play the long game.</span>
+  </div>
+</section>
+
+<div class="orn"><div class="orn-line"></div><span class="orn-piece">♔ ♟ ♔</span><div class="orn-line"></div></div>
+
+<!-- ORIGIN -->
+<section class="s r">
+  <p class="mono">Origin · La Historia</p>
+  <h2 class="display">He started with a tagline.<br><em>We kept the feeling.</em></h2>
+  <p class="prose">Some people say they're the last of a dying breed. Most mean it as an elegy — a small sadness about a world moving on without them. <strong>El Último</strong> means something different.</p>
+  <p class="prose">It means you're still on the board. It means everyone else got taken, and you're the piece that adapted, endured, read the game better than anyone. That's not a dying breed. That's a lineage.</p>
+
+  <div class="origin-block r">
+    <p class="origin-quote">
+      "Último de su estirpe" — last of his line. Not the end of something. The pinnacle of it. The king doesn't die when the others fall. He becomes the reason it all mattered.
+    </p>
+    <div class="origin-attribution">El Último · Brand Philosophy</div>
+  </div>
+</section>
+
+<div class="orn"><div class="orn-line"></div><span class="orn-piece">♔ ♟ ♔</span><div class="orn-line"></div></div>
+
+<!-- LINEAGE — uncle Daniel -->
+<section class="s dark-bg r" id="lineage">
+  <p class="mono">Family · La Línea</p>
+  <h2 class="display">The move before<br><em>the opening.</em></h2>
+  <p class="prose">Every story on this site leads back to a real table — where <strong>Daniel</strong> first said the thing that became the brand: not a performance, just a man who knew what it meant to be the last one still making the right moves.</p>
+  <p class="prose">El Último is his handle in the world; the chess is the truth of it. Spanish heat, medieval weight, silver restraint: the mix is intentional. This section is the only place the family name needs the spotlight — everywhere else, the board speaks.</p>
+  <div class="origin-block r" style="margin-top:40px;border-left-color:var(--gilt);background:linear-gradient(90deg, rgba(154,124,58,0.08), transparent);">
+    <p class="origin-quote" style="font-size:clamp(16px,2.4vw,22px);">Para Daniel — <em>último de su estirpe</em> en nuestra casa, aunque el tablero sea del mundo.</p>
+    <div class="origin-attribution">dedicación · no es marketing; es linaje</div>
+  </div>
+</section>
+
+<div class="orn"><div class="orn-line"></div><span class="orn-piece">♟</span><div class="orn-line"></div></div>
+
+<!-- TIERS -->
+<section class="s r">
+  <p class="mono">Service · Los Rangos</p>
+  <h2 class="display">Every king<br><em>was once a pawn.</em></h2>
+
+  <div class="tiers r">
+    <div class="tier" data-piece="♟">
+      <span class="tier-piece">♟</span>
+      <p class="tier-rank">Entry · La Apertura</p>
+      <p class="tier-name">El Peón</p>
+      <p class="tier-en">The Opening Move</p>
+      <p class="tier-desc">2ml decants from 3 houses. The first move costs nothing but courage. Designed for people who've never played the fragrance game — or got burned trying.</p>
+    </div>
+    <div class="tier featured" data-piece="♞">
+      <span class="tier-piece">♞</span>
+      <p class="tier-rank">Mid · El Desarrollo</p>
+      <p class="tier-name">El Caballero</p>
+      <p class="tier-en">The Middle Game</p>
+      <p class="tier-desc">5ml + a routing consultation. Three questions. We map your territory. You leave with samples that fit who you actually are — not who you think you want to smell like.</p>
+    </div>
+    <div class="tier" data-piece="♔">
+      <span class="tier-piece">♔</span>
+      <p class="tier-rank">Signature · El Final</p>
+      <p class="tier-name">El Último</p>
+      <p class="tier-en">The Endgame</p>
+      <p class="tier-desc">10ml of your house scent + full profile build. You leave knowing exactly what you wear and why. One scent. Yours forever. The king of your own board.</p>
+    </div>
+  </div>
+</section>
+
+<div class="orn"><div class="orn-line"></div><span class="orn-piece">♔ ♟ ♔</span><div class="orn-line"></div></div>
+
+<!-- PROCESS -->
+<section class="s dark-bg r">
+  <p class="mono">Process · Los Movimientos</p>
+  <h2 class="display">Four moves.<br><em>One signature.</em></h2>
+
+  <div class="moves r">
+    <div class="move">
+      <div class="move-num">I</div>
+      <div class="move-content">
+        <p class="move-title">La Apertura <span class="notation">1. e4</span></p>
+        <p class="move-desc">Tell us who you are. Not what you like — who you are. The mood of a room you want to walk into. The version of yourself you haven't introduced to anyone yet.</p>
+      </div>
+    </div>
+    <div class="move">
+      <div class="move-num">II</div>
+      <div class="move-content">
+        <p class="move-title">El Desarrollo <span class="notation">2. Nf3</span></p>
+        <p class="move-desc">We pull 3–5 decants. Amouage, Nishane, Mind Games, Creed, and houses you've never heard of. No $400 bottles until you know which one is yours.</p>
+      </div>
+    </div>
+    <div class="move">
+      <div class="move-num">III</div>
+      <div class="move-content">
+        <p class="move-title">El Medio Juego <span class="notation">3. Bb5</span></p>
+        <p class="move-desc">You wear them. A week each. Then you come back and we debrief. What felt like armor. What felt like a costume. What felt like skin. That distinction is everything.</p>
+      </div>
+    </div>
+    <div class="move">
+      <div class="move-num">IV</div>
+      <div class="move-content">
+        <p class="move-title">El Último <span class="notation">♔ ·</span></p>
+        <p class="move-desc">The one. We route you to the full bottle with absolute confidence. You never pay full price for something you don't love again. The game is over. You won.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy r">
+  <div class="phil-ornament">♟ · ♔ · ♟</div>
+  <p class="phil-quote">
+    Some people are the last of a dying breed. Some people are the last of their line. Only one of those is a king.
+  </p>
+  <p class="phil-lineage">último de su estirpe</p>
+  <p class="phil-attr">El Último · La Filosofía</p>
+</section>
+
+<div class="orn"><div class="orn-line"></div><span class="orn-piece">♟</span><div class="orn-line"></div></div>
+
+<!-- IDENTITY -->
+<section class="s r">
+  <p class="mono">Brand Identity · La Marca</p>
+  <h2 class="display">The system<br><em>behind the name.</em></h2>
+
+  <div class="id-grid r">
+    <div>
+      <div class="id-block">
+        <p class="id-label">Color Palette</p>
+        <p class="id-value">Near-void black ground. Blood king-red for power. Aged gold for lineage. Sand and parchment for warmth — the color of old letters, pressed flowers, receipts from a shop that no longer exists.</p>
+        <div class="palette-row" style="margin-bottom:20px;">
+          <div class="swatch" style="background:#060504;"><span>#06050</span></div>
+          <div class="swatch" style="background:#9e2020;"><span>#9e2020</span></div>
+          <div class="swatch" style="background:#a07c2a;"><span>#a07c2a</span></div>
+          <div class="swatch" style="background:#c4b49a;"><span>#c4b49a</span></div>
+          <div class="swatch" style="background:#f0e8d8;"><span>#f0e8d8</span></div>
+        </div>
+      </div>
+      <div class="id-block">
+        <p class="id-label">Typography</p>
+        <p class="id-value"><strong>Cormorant Garamond</strong> — display, brand name, hero. The thinnest strokes in luxury typography. References: colonial hacienda signage, Borges first editions, Casa de Alba correspondence.<br><br><strong>Libre Baskerville</strong> — body, product copy, editorial. Warm and readable, never cold.<br><br><strong>Courier Prime</strong> — labels, notation, tactical data. The monospace is chess notation. Dry, precise, like a tournament record.</p>
+      </div>
+      <div class="id-block">
+        <p class="id-label">Icon Language</p>
+        <p class="id-value">♔ ♕ ♖ ♗ ♘ ♟ — native Unicode chess pieces. No custom icon set needed. Pieces map to service tiers, section markers, copy rhythm. The king appears wherever the brand voice is at its most declarative.</p>
+      </div>
+    </div>
+    <div>
+      <div class="id-block">
+        <p class="id-label">Voice System</p>
+        <div class="voice-item">
+          <p class="voice-tag">Declarative (Spanish)</p>
+          <p class="voice-eg">El rey que queda en pie.</p>
+          <p class="voice-en">Short. Authoritative. Always leads.</p>
+        </div>
+        <div class="voice-item">
+          <p class="voice-tag">Translation (English)</p>
+          <p class="voice-eg">The king left standing.</p>
+          <p class="voice-en">Follows in smaller type. Never replaces.</p>
+        </div>
+        <div class="voice-item">
+          <p class="voice-tag">Tactical (Mono)</p>
+          <p class="voice-eg">1. e4 · La Apertura</p>
+          <p class="voice-en">Chess notation for process and structure copy.</p>
+        </div>
+        <div class="voice-item">
+          <p class="voice-tag">Sensory (Prose)</p>
+          <p class="voice-eg">"What felt like armor. What felt like skin."</p>
+          <p class="voice-en">Embodied. Never technical. No note pyramids.</p>
+        </div>
+        <div class="voice-item">
+          <p class="voice-tag">Lineage Marker</p>
+          <p class="voice-eg">último de su estirpe</p>
+          <p class="voice-en">Always italic, always gold. The brand's throughline.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dba r">
+    <div class="dba-detail">
+      <strong>Legal Structure</strong>
+      DBA under Hopefully Abysmal LLC<br>
+      Doing Business As: El Último Fragrance<br>
+      <br>
+      <strong>Operator</strong>
+      Handle: @elultimo<br>
+      Specialty: Routing · Decanting · Curation
+    </div>
+    <div class="dba-mark">
+      <p class="dba-parent">Hopefully Abysmal LLC</p>
+      <p class="dba-name">El Último</p>
+    </div>
+  </div>
+</section>
+
+<div class="orn"><div class="orn-line"></div><span class="orn-piece">♔ ♟ ♔</span><div class="orn-line"></div></div>
+
+<!-- NAME OPTIONS -->
+<section class="s r">
+  <p class="mono">Naming · El Nombre</p>
+  <h2 class="display">Three reads<br><em>on the same king.</em></h2>
+
+  <div class="names r">
+    <div class="name-card rec">
+      <p class="name-tag">♔ Recommended</p>
+      <p class="name-title">El <span>Último</span></p>
+      <p class="name-note">Both readings load at once: "the ultimate" and "the last one standing." His existing handle. The accent does typographic work. The lineage tagline lives beneath it naturally. No branding distance to bridge.</p>
+    </div>
+    <div class="name-card">
+      <p class="name-tag">♕ Alt — if simpler</p>
+      <p class="name-title"><span>Rey</span> Fragrance</p>
+      <p class="name-note">Drop the chess subtlety. Rey = King. More searchable, simpler to explain cold. Loses the depth but gains immediate clarity for people who don't know chess.</p>
+    </div>
+    <div class="name-card">
+      <p class="name-tag">♟ Alt — if bold</p>
+      <p class="name-title">Jaque <span>Mate</span></p>
+      <p class="name-note">Checkmate in Spanish. The most declarative of the three — you came in not knowing your scent and left in checkmate. Strong for Instagram. "Jaque Mate Fragrance" — slightly harder to say once, impossible to forget.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-left">
+    Hopefully Abysmal LLC<br>
+    DBA · El Último Fragrance<br>
+    ♟ · Est. 2025
+  </div>
+  <div class="foot-center">
+    <span class="foot-mark">El Último</span>
+    <span class="foot-piece">♔</span>
+  </div>
+  <div class="foot-right">
+    último de su estirpe<br>
+    every scent is a strategy<br>
+    ♔ · @elultimo
+  </div>
+</footer>
+
+<script>
+// chess board
+const cb = document.getElementById('chessboard');
+for (let r=0;r<8;r++) for(let c=0;c<8;c++){
+  const s=document.createElement('div');
+  s.className='sq '+((r+c)%2===0?'light':'dark');
+  cb.appendChild(s);
+}
+
+// nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// reveals
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('v'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.r').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

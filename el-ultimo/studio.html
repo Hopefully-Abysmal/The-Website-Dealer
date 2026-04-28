@@ -1,0 +1,2026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EL ÚLTIMO — Brand Folio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+/* ═══════════════════════════════════════════
+   PALETTE — Spanish Medieval Armor
+   ═══════════════════════════════════════════ */
+:root {
+  /* Grounds */
+  --void:     #0c0d0e;
+  --deep:     #111315;
+  --steel-dk: #181b1e;
+  --steel-md: #242830;
+  --steel-lt: #2e3338;
+  --rim:      #3a3f46;
+  --dim:      #4a5058;
+
+  /* Silvers */
+  --iron:     #5e6470;
+  --silver:   #8c9199;
+  --mist:     #b8bcc2;
+  --cold:     #d4d8dc;
+  --white:    #e8eaec;
+
+  /* Bronze / Gold accents */
+  --bronze-dk:#5a4020;
+  --bronze:   #7a5c2e;
+  --bronze-lt:#9a7c3a;
+  --gilt:     #b89440;
+
+  /* Blood — single warm flash */
+  --blood-dk: #5a0f0f;
+  --blood:    #8b1a1a;
+  --blood-lt: #a82020;
+
+  /* Chain mail texture SVG */
+  --chain: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cellipse cx='6' cy='6' rx='4.5' ry='2.5' fill='none' stroke='%23ffffff' stroke-width='0.4' opacity='0.06'/%3E%3Cellipse cx='18' cy='6' rx='4.5' ry='2.5' fill='none' stroke='%23ffffff' stroke-width='0.4' opacity='0.06'/%3E%3Cellipse cx='12' cy='12' rx='4.5' ry='2.5' fill='none' stroke='%23ffffff' stroke-width='0.4' opacity='0.06'/%3E%3Cellipse cx='6' cy='18' rx='4.5' ry='2.5' fill='none' stroke='%23ffffff' stroke-width='0.4' opacity='0.06'/%3E%3Cellipse cx='18' cy='18' rx='4.5' ry='2.5' fill='none' stroke='%23ffffff' stroke-width='0.4' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--void);
+  color: var(--white);
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* grain */
+body::after {
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:9999;
+}
+
+/* ═══════════════════════════════════════════
+   TAB SHELL
+   ═══════════════════════════════════════════ */
+.shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Tab nav */
+.tab-nav {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  background: rgba(12,13,14,0.96);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--rim);
+  display: flex;
+  align-items: stretch;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tab-nav::-webkit-scrollbar { display: none; }
+
+.tab-brand {
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid var(--rim);
+  flex-shrink: 0;
+}
+.tab-brand-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--white);
+  letter-spacing: 0.04em;
+}
+.tab-brand-name span { color: var(--blood-lt); }
+
+.tab-btn {
+  padding: 16px 24px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--iron);
+  font-family: 'Courier Prime', monospace;
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.tab-btn:hover { color: var(--mist); }
+.tab-btn.active {
+  color: var(--white);
+  border-bottom-color: var(--blood-lt);
+}
+
+.twd-ext {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px 18px;
+  padding: 0 20px 0 12px;
+  flex-shrink: 0;
+  border-left: 1px solid var(--rim);
+}
+.twd-ext a {
+  font-family: 'Courier Prime', monospace;
+  font-size: 8px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--iron);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+.twd-ext a:hover { color: var(--mist); }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ═══════════════════════════════════════════
+   SHARED PRIMITIVES
+   ═══════════════════════════════════════════ */
+.mono {
+  font-family: 'Courier Prime', monospace;
+  font-size: 8.5px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--blood-lt);
+  margin-bottom: 16px;
+  display: block;
+}
+.display {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 5.5vw, 62px);
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+}
+.display em { font-style: italic; font-weight: 300; color: var(--bronze-lt); }
+
+.prose {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--silver);
+  max-width: 600px;
+}
+.prose + .prose { margin-top: 16px; }
+.prose strong { color: var(--white); }
+
+.s  { padding: 80px 52px; position: relative; z-index: 1; }
+.s.sm { padding: 52px 52px; }
+
+.orn {
+  display: flex;
+  align-items: center;
+  padding: 0 52px;
+  gap: 18px;
+}
+.orn-line {
+  flex:1;
+  height:1px;
+  background: linear-gradient(90deg, transparent, var(--rim), transparent);
+}
+.orn-glyph {
+  font-size: 12px;
+  color: var(--blood);
+  opacity: 0.5;
+  letter-spacing: 0.5em;
+}
+
+/* heraldic rule */
+.hrule {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--blood-dk), var(--blood-lt) 40%, var(--bronze) 60%, var(--blood-dk));
+  margin: 0;
+}
+
+/* ── FILIGREE ORNAMENT ── */
+/* Colonial baroque scroll divider — references the mug's gold-on-black scrollwork */
+.orn-filigree {
+  display: flex;
+  align-items: center;
+  padding: 0 52px;
+  gap: 0;
+  overflow: hidden;
+}
+.orn-filigree svg {
+  width: 100%;
+  height: 28px;
+  overflow: visible;
+}
+
+/* ═══════════════════════════════════════════
+   ① LANDING PAGE
+   ═══════════════════════════════════════════ */
+
+/* Hero */
+.lp-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 52px 72px;
+  overflow: visible; /* FIXED: was hidden, clipped text */
+  background: var(--void);
+}
+
+/* clip only the bg elements, not the text */
+.lp-hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* chain mail texture */
+.lp-hero-bg::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image: var(--chain);
+  background-size: 24px 24px;
+  opacity: 0.55;
+}
+
+/* chess board inside hero bg */
+.lp-hero-chessboard {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  opacity: 0.03;
+}
+.lp-hero-chessboard .sq.light { background: var(--white); }
+.lp-hero-chessboard .sq.dark  { background: transparent; }
+
+/* crest watermark — clipped inside bg div */
+.lp-crest {
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: clamp(260px, 44vw, 520px);
+  color: var(--white);
+  opacity: 0.025;
+  pointer-events: none;
+  line-height: 1;
+  user-select: none;
+  animation: crownFade 3s ease both;
+}
+@keyframes crownFade { from{opacity:0;} to{opacity:0.025;} }
+
+/* left edge sword */
+.lp-sword {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, transparent 0%, var(--blood) 30%, var(--bronze) 60%, transparent 100%);
+  opacity: 0.6;
+}
+
+.lp-eyebrow {
+  font-family: 'Courier Prime', monospace;
+  font-size: 9px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--blood-lt);
+  margin-bottom: 22px;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 1s ease 0.3s both;
+}
+
+.lp-name {
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 1.1s ease 0.5s both;
+  margin-bottom: 10px;
+  padding-right: 32px; /* keep crown from overflowing viewport */
+}
+.lp-el {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 5.5vw, 64px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--silver);
+  line-height: 1.1;
+  letter-spacing: 0.1em;
+  margin-bottom: 0; /* FIXED: was -0.06em causing clip */
+}
+.lp-ultimo {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(72px, 14vw, 180px);
+  font-weight: 700;
+  line-height: 1; /* FIXED: was 0.88 clipping ascenders */
+  letter-spacing: -0.02em;
+  color: var(--white);
+  position: relative;
+}
+.lp-ultimo::after {
+  content:'♔';
+  font-size: 0.13em;
+  color: var(--blood-lt);
+  position: absolute;
+  top: 0.05em;
+  right: 0; /* FIXED: was -0.1em pushing outside */
+  animation: crownPulse 4s ease-in-out infinite;
+  line-height: 1;
+}
+@keyframes crownPulse { 0%,100%{opacity:.4;} 50%{opacity:.9;} }
+
+.lp-tagline {
+  position: relative;
+  z-index: 1;
+  margin-top: 20px;
+  animation: fadeUp 1s ease 0.7s both;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.lp-tagline-rule {
+  width: 36px; height: 1px;
+  background: linear-gradient(90deg, var(--blood-lt), var(--bronze));
+  flex-shrink: 0;
+}
+.lp-tagline-es {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(14px, 2vw, 20px);
+  color: var(--bronze-lt);
+  letter-spacing: 0.04em;
+}
+
+.lp-sub {
+  position: relative;
+  z-index: 1;
+  margin-top: 24px;
+  animation: fadeUp 1s ease 0.9s both;
+  max-width: 520px;
+}
+.lp-sub .es {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(15px, 2.2vw, 20px);
+  color: var(--mist);
+  line-height: 1.65;
+  display: block;
+  margin-bottom: 10px;
+}
+.lp-sub .en {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  color: var(--iron);
+  line-height: 1.85;
+  display: block;
+}
+
+/* CTA */
+.lp-cta-row {
+  position: relative;
+  z-index: 1;
+  margin-top: 40px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  animation: fadeUp 1s ease 1.1s both;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--blood);
+  color: var(--white);
+  padding: 14px 32px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s;
+  text-decoration: none;
+}
+.btn-primary:hover { background: var(--blood-lt); }
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  color: var(--mist);
+  padding: 14px 32px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  border: 1px solid var(--rim);
+  cursor: pointer;
+  transition: border-color 0.25s, color 0.25s;
+  text-decoration: none;
+}
+.btn-ghost:hover { border-color: var(--silver); color: var(--white); }
+
+@keyframes fadeUp {
+  from{opacity:0;transform:translateY(18px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* Feature strip */
+.lp-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: var(--steel-dk);
+  border-top: 1px solid var(--rim);
+  border-bottom: 1px solid var(--rim);
+}
+.lp-feat {
+  padding: 36px 32px;
+  border-right: 1px solid var(--rim);
+  position: relative;
+}
+.lp-feat:last-child { border-right: none; }
+.lp-feat-icon {
+  font-size: 22px;
+  color: var(--blood-lt);
+  opacity: 0.7;
+  margin-bottom: 14px;
+  display: block;
+}
+.lp-feat-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.lp-feat-desc {
+  font-size: 12.5px;
+  line-height: 1.8;
+  color: var(--iron);
+}
+
+/* How it works horizontal */
+.lp-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--rim);
+  border: 1px solid var(--rim);
+  margin-top: 48px;
+}
+.lp-step {
+  background: var(--deep);
+  padding: 36px 28px;
+  transition: background 0.3s;
+}
+.lp-step:hover { background: var(--steel-lt); }
+.lp-step-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--blood);
+  opacity: 0.35;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.lp-step-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.lp-step-notation {
+  font-family: 'Courier Prime', monospace;
+  font-size: 8.5px;
+  color: var(--bronze-lt);
+  letter-spacing: 0.2em;
+  margin-bottom: 10px;
+}
+.lp-step-desc {
+  font-size: 12.5px;
+  line-height: 1.8;
+  color: var(--iron);
+}
+
+/* Origin strip */
+.lp-origin {
+  background: linear-gradient(135deg, var(--steel-dk), var(--deep));
+  border-top: 1px solid var(--rim);
+  border-bottom: 1px solid var(--rim);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.lp-origin-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(20px, 3.2vw, 32px);
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--white);
+  position: relative;
+  padding-left: 28px;
+  border-left: 2px solid var(--blood);
+}
+.lp-origin-right p {
+  font-size: 13.5px;
+  line-height: 1.9;
+  color: var(--iron);
+  margin-bottom: 14px;
+}
+.lp-origin-right p strong { color: var(--mist); }
+
+/* ═══════════════════════════════════════════
+   ② SHOP PAGE
+   ═══════════════════════════════════════════ */
+.shop-header {
+  background: var(--steel-dk);
+  padding: 40px 52px 28px;
+  border-bottom: 1px solid var(--rim);
+}
+.shop-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 28px;
+}
+.shop-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.filter-btn {
+  background: none;
+  border: 1px solid var(--rim);
+  color: var(--iron);
+  padding: 7px 16px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 8.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.filter-btn:hover, .filter-btn.active {
+  border-color: var(--blood-lt);
+  color: var(--white);
+  background: rgba(139,26,26,0.08);
+}
+
+/* Product grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--rim);
+  border: 1px solid var(--rim);
+  margin: 0 52px 52px;
+}
+
+.product-card {
+  background: var(--deep);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.product-card:hover { background: var(--steel-dk); }
+.product-card:hover .product-img-inner { transform: scale(1.04); }
+
+/* Product image area — SVG bottle mockup */
+.product-img {
+  aspect-ratio: 4/5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--steel-dk);
+}
+.product-img::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image: var(--chain);
+  background-size: 24px 24px;
+  opacity: 0.5;
+}
+.product-img-inner {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+/* SVG bottle */
+.bottle-svg {
+  width: 90px;
+  filter: drop-shadow(0 8px 32px rgba(0,0,0,0.7));
+}
+
+.product-tier-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--blood-lt);
+  background: rgba(12,13,14,0.85);
+  padding: 5px 10px;
+  border: 1px solid var(--blood-dk);
+  z-index: 2;
+}
+
+.product-info {
+  padding: 24px 24px 28px;
+}
+.product-house {
+  font-family: 'Courier Prime', monospace;
+  font-size: 8px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--bronze-lt);
+  margin-bottom: 6px;
+}
+.product-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 4px;
+  line-height: 1.15;
+}
+.product-sub {
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  color: var(--iron);
+  margin-bottom: 14px;
+}
+.product-notes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.note-tag {
+  font-family: 'Courier Prime', monospace;
+  font-size: 7.5px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid var(--dim);
+  color: var(--iron);
+  transition: all 0.2s;
+}
+.product-card:hover .note-tag {
+  border-color: var(--rim);
+  color: var(--silver);
+}
+.product-price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+}
+.product-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--white);
+}
+.product-ml {
+  font-family: 'Courier Prime', monospace;
+  font-size: 8px;
+  letter-spacing: 0.25em;
+  color: var(--iron);
+}
+.product-add {
+  background: var(--blood-dk);
+  border: none;
+  color: var(--white);
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.product-add:hover { background: var(--blood-lt); }
+
+/* Featured / full-width product */
+.product-card.featured {
+  grid-column: span 2;
+}
+.product-card.featured .product-img {
+  aspect-ratio: 16/7;
+}
+.product-card.featured .bottle-svg {
+  width: 120px;
+}
+
+/* Sidebar layout for shop */
+.shop-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 0;
+}
+.shop-sidebar {
+  padding: 40px 28px;
+  border-right: 1px solid var(--rim);
+  background: var(--steel-dk);
+  position: sticky;
+  top: 52px;
+  height: calc(100vh - 52px);
+  overflow-y: auto;
+}
+.shop-main { padding: 40px 0; }
+
+.sidebar-section { margin-bottom: 36px; }
+.sidebar-title {
+  font-family: 'Courier Prime', monospace;
+  font-size: 8px;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--iron);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--dim);
+}
+.sidebar-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 0;
+  cursor: pointer;
+  color: var(--iron);
+  font-size: 13px;
+  transition: color 0.2s;
+}
+.sidebar-option:hover { color: var(--mist); }
+.sidebar-option.active { color: var(--white); }
+.sidebar-option::before {
+  content: '♟';
+  font-size: 9px;
+  color: var(--blood);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.sidebar-option.active::before,
+.sidebar-option:hover::before { opacity: 1; }
+
+/* ═══════════════════════════════════════════
+   ③ PACKAGING
+   ═══════════════════════════════════════════ */
+.pkg-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+/* Box mockup */
+.box-mockup {
+  position: relative;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--steel-md);
+  overflow: hidden;
+}
+.box-mockup::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image: var(--chain);
+  background-size: 20px 20px;
+  opacity:0.8;
+}
+.box-face {
+  position: relative;
+  z-index: 1;
+  width: 68%;
+  aspect-ratio: 3/4;
+  background: var(--void);
+  border: 1px solid var(--rim);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.03);
+}
+.box-face::before {
+  content:'';
+  position:absolute;
+  inset:8px;
+  border: 1px solid var(--blood-dk);
+  pointer-events:none;
+}
+.box-heraldic-top {
+  font-size: 28px;
+  color: var(--blood-lt);
+  opacity: 0.8;
+  margin-bottom: 16px;
+  letter-spacing: 0.3em;
+}
+.box-wordmark {
+  text-align: center;
+}
+.box-el {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--silver);
+  letter-spacing: 0.2em;
+  line-height: 1;
+}
+.box-ultimo {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--white);
+}
+.box-lineage {
+  display: block;
+  font-family: 'Courier Prime', monospace;
+  font-size: 6px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--bronze-lt);
+  margin-top: 10px;
+}
+.box-bottom-rule {
+  position: absolute;
+  bottom: 20px;
+  left: 20px; right: 20px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--blood), var(--bronze), transparent);
+  opacity: 0.4;
+}
+
+/* Bottle mockup */
+.bottle-mockup {
+  margin-top: 40px;
+  display: flex;
+  gap: 32px;
+  align-items: flex-end;
+}
+
+/* Spec cards */
+.pkg-specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--rim);
+  border: 1px solid var(--rim);
+  margin-top: 48px;
+}
+.pkg-spec {
+  background: var(--deep);
+  padding: 32px 28px;
+}
+.pkg-spec-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 8px;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--blood-lt);
+  margin-bottom: 12px;
+}
+.pkg-spec-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+.pkg-spec-body {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--iron);
+}
+.pkg-spec-body strong { color: var(--mist); }
+
+/* material swatches */
+.mat-swatches {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+.mat-swatch {
+  text-align: center;
+}
+.mat-chip {
+  width: 48px;
+  height: 48px;
+  border-radius: 2px;
+  margin-bottom: 8px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+.mat-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 6.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--iron);
+  display: block;
+}
+
+/* bottle variants */
+.bottle-variants {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--rim);
+  border: 1px solid var(--rim);
+  margin-top: 48px;
+}
+.bottle-variant {
+  background: var(--deep);
+  padding: 36px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: background 0.3s;
+}
+.bottle-variant:hover { background: var(--steel-lt); }
+.bottle-variant-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--blood-lt);
+  margin-bottom: 24px;
+}
+.bottle-variant-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--white);
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+.bottle-variant-desc {
+  font-size: 12px;
+  line-height: 1.75;
+  color: var(--iron);
+}
+
+/* ═══════════════════════════════════════════
+   ④ BRAND FOLIO / TO-DO
+   ═══════════════════════════════════════════ */
+.folio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-top: 48px;
+}
+
+.checklist-section { margin-bottom: 40px; }
+.checklist-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.checklist-title .piece { font-size: 16px; color: var(--blood-lt); }
+.checklist-sub {
+  font-family: 'Courier Prime', monospace;
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--iron);
+  margin-bottom: 18px;
+}
+.checklist { list-style: none; }
+.checklist li {
+  display: grid;
+  grid-template-columns: 20px 1fr auto;
+  gap: 12px;
+  align-items: baseline;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--dim);
+  font-size: 13.5px;
+  color: var(--silver);
+  transition: color 0.2s;
+}
+.checklist li:last-child { border-bottom: none; }
+.checklist li:hover { color: var(--white); }
+.checklist li .ck {
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--dim);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-size: 8px;
+  color: var(--blood-lt);
+}
+.checklist li.done .ck {
+  background: rgba(139,26,26,0.2);
+  border-color: var(--blood);
+}
+.checklist li.done .ck::after { content: '✓'; }
+.checklist li.done { color: var(--dim); text-decoration: line-through; text-decoration-color: var(--blood-dk); }
+.priority {
+  font-family: 'Courier Prime', monospace;
+  font-size: 7px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border: 1px solid;
+  white-space: nowrap;
+}
+.p-now  { color: var(--blood-lt); border-color: var(--blood-dk); background: rgba(139,26,26,0.08); }
+.p-next { color: var(--bronze-lt); border-color: var(--bronze-dk); background: rgba(122,92,46,0.08); }
+.p-later{ color: var(--iron); border-color: var(--dim); }
+
+/* Phase header */
+.phase-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  background: var(--steel-dk);
+  border: 1px solid var(--rim);
+  border-bottom: none;
+  margin-top: 24px;
+}
+.phase-header:first-child { margin-top: 0; }
+.phase-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--blood);
+  opacity: 0.6;
+  line-height: 1;
+}
+.phase-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--white);
+}
+.phase-sub {
+  font-family: 'Courier Prime', monospace;
+  font-size: 7.5px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--iron);
+  margin-left: auto;
+}
+
+.checklist-wrap {
+  border: 1px solid var(--rim);
+  padding: 8px 16px;
+}
+
+/* Inspiration board */
+.inspo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background: var(--dim);
+  border: 1px solid var(--dim);
+  margin-top: 48px;
+}
+.inspo-card {
+  background: var(--steel-dk);
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px 16px;
+  transition: background 0.3s;
+  cursor: default;
+}
+.inspo-card:hover { background: var(--steel-lt); }
+.inspo-icon { font-size: 32px; margin-bottom: 12px; opacity: 0.5; }
+.inspo-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--blood-lt);
+  margin-bottom: 6px;
+}
+.inspo-text {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--iron);
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .s { padding: 52px 24px; }
+  .orn { padding: 0 24px; }
+  .orn-filigree { padding: 0 24px; }
+  .shop-header { padding: 28px 24px 20px; }
+  .lp-hero { padding: 0 24px 56px; }
+  .lp-features { grid-template-columns: 1fr; }
+  .lp-steps { grid-template-columns: 1fr; } /* FIXED: was 1fr 1fr, clipped on mobile */
+  .lp-origin { grid-template-columns: 1fr; gap: 32px; }
+  .product-grid { grid-template-columns: 1fr; margin: 0 24px 24px; }
+  .product-card.featured { grid-column: span 1; }
+  .shop-layout { grid-template-columns: 1fr; }
+  .shop-sidebar { position: static; height: auto; }
+  .pkg-intro { grid-template-columns: 1fr; gap: 40px; }
+  .pkg-specs { grid-template-columns: 1fr; }
+  .bottle-variants { grid-template-columns: 1fr; }
+  .folio-grid { grid-template-columns: 1fr; gap: 0; }
+  .inspo-grid { grid-template-columns: repeat(2,1fr); }
+  .lp-crest { display: none; }
+  .lp-name { padding-right: 16px; }
+}
+
+/* reveal */
+.r { opacity:0; transform:translateY(20px); transition:opacity .75s ease,transform .75s ease; }
+.r.v { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- ════════ TAB NAV ════════ -->
+<nav class="tab-nav">
+  <div class="tab-brand"><span class="tab-brand-name"><span>El</span> Último</span></div>
+  <button class="tab-btn active" data-tab="landing">① Landing Page</button>
+  <button class="tab-btn" data-tab="shop">② Shop</button>
+  <button class="tab-btn" data-tab="packaging">③ Packaging</button>
+  <button class="tab-btn" data-tab="folio">④ Brand Folio + To-Do</button>
+  <div class="twd-ext">
+    <a href="index.html">El Último</a>
+    <a href="atlas.html">Atlas</a>
+    <a href="../index.html">Dealer</a>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════
+     ① LANDING PAGE
+     ════════════════════════════════════════ -->
+<div class="tab-panel active" id="tab-landing">
+
+  <!-- HERO -->
+  <section class="lp-hero">
+    <!-- all bg layers clipped here, text floats above -->
+    <div class="lp-hero-bg">
+      <div class="lp-hero-chessboard" id="lp-chess"></div>
+      <div class="lp-crest">♔</div>
+      <div class="lp-sword"></div>
+    </div>
+
+    <p class="lp-eyebrow" style="position:relative;z-index:1;">♔ · Fragrance Routing &amp; Decanting · Est. 2025</p>
+    <div class="lp-name">
+      <span class="lp-el">el</span>
+      <span class="lp-ultimo">Último</span>
+    </div>
+    <div class="lp-tagline" style="position:relative;z-index:1;">
+      <div class="lp-tagline-rule"></div>
+      <span class="lp-tagline-es">último de su estirpe</span>
+    </div>
+    <div class="lp-sub" style="position:relative;z-index:1;">
+      <span class="es">El rey que queda en pie cuando todos los demás han caído.</span>
+      <span class="en">The king left standing when all others have fallen. — A fragrance routing &amp; decanting service for people who play the long game.</span>
+    </div>
+    <div class="lp-cta-row" style="position:relative;z-index:1;">
+      <a class="btn-primary" href="#">♟ &nbsp; Find Your Scent</a>
+      <a class="btn-ghost" href="#">Explore the Catalog →</a>
+    </div>
+  </section>
+
+  <div class="hrule"></div>
+
+  <!-- FEATURE STRIP -->
+  <div class="lp-features">
+    <div class="lp-feat">
+      <span class="lp-feat-icon">♟</span>
+      <p class="lp-feat-title">No Blind Buys</p>
+      <p class="lp-feat-desc">2ml – 10ml decants from the houses that matter. Try before you commit a single dollar to a full bottle.</p>
+    </div>
+    <div class="lp-feat">
+      <span class="lp-feat-icon">♞</span>
+      <p class="lp-feat-title">Expert Routing</p>
+      <p class="lp-feat-desc">Three questions. One consultation. We map your olfactive territory before you smell a single thing.</p>
+    </div>
+    <div class="lp-feat">
+      <span class="lp-feat-icon">♔</span>
+      <p class="lp-feat-title">Your Signature</p>
+      <p class="lp-feat-desc">The endgame is El Último — one scent, yours forever. The king of your own board. No more guessing.</p>
+    </div>
+  </div>
+
+  <div class="orn-filigree"><svg viewBox="0 0 800 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="14" x2="340" y2="14" stroke="#3a3f46" stroke-width="0.8"/><path d="M340,14 Q355,6 365,14 Q375,22 385,14" fill="none" stroke="#7a5c2e" stroke-width="1" opacity="0.8"/><path d="M365,14 Q370,4 375,8 Q380,12 375,14" fill="none" stroke="#9a7c3a" stroke-width="0.8" opacity="0.6"/><path d="M355,14 Q350,4 345,8 Q340,12 345,14" fill="none" stroke="#9a7c3a" stroke-width="0.8" opacity="0.6"/><text x="400" y="18.5" font-family="serif" font-size="12" fill="#8b1a1a" opacity="0.7" text-anchor="middle">♔ ♟ ♔</text><path d="M415,14 Q425,6 435,14 Q445,22 455,14" fill="none" stroke="#7a5c2e" stroke-width="1" opacity="0.8"/><path d="M425,14 Q430,4 435,8 Q440,12 435,14" fill="none" stroke="#9a7c3a" stroke-width="0.8" opacity="0.6"/><path d="M445,14 Q450,4 455,8 Q460,12 455,14" fill="none" stroke="#9a7c3a" stroke-width="0.8" opacity="0.6"/><line x1="460" y1="14" x2="800" y2="14" stroke="#3a3f46" stroke-width="0.8"/></svg></div>
+
+  <!-- HOW IT WORKS -->
+  <section class="s sm r">
+    <span class="mono">The Process · Los Movimientos</span>
+    <h2 class="display">Four moves.<br><em>One signature.</em></h2>
+    <div class="lp-steps">
+      <div class="lp-step">
+        <div class="lp-step-num">I</div>
+        <p class="lp-step-notation">1. e4 — La Apertura</p>
+        <p class="lp-step-title">The Opening</p>
+        <p class="lp-step-desc">Tell us who you are. Not what you like — who you actually are. The room you want to walk into.</p>
+      </div>
+      <div class="lp-step">
+        <div class="lp-step-num">II</div>
+        <p class="lp-step-notation">2. Nf3 — El Desarrollo</p>
+        <p class="lp-step-title">Development</p>
+        <p class="lp-step-desc">We pull 3–5 decants. Top houses, rare finds. No $400 bottles until you know which one is yours.</p>
+      </div>
+      <div class="lp-step">
+        <div class="lp-step-num">III</div>
+        <p class="lp-step-notation">3. Bb5 — El Medio Juego</p>
+        <p class="lp-step-title">Middle Game</p>
+        <p class="lp-step-desc">Wear them. One week each. What felt like armor. What felt like a costume. What felt like skin.</p>
+      </div>
+      <div class="lp-step">
+        <div class="lp-step-num">IV</div>
+        <p class="lp-step-notation">♔ · — El Final</p>
+        <p class="lp-step-title">Endgame</p>
+        <p class="lp-step-desc">Your scent. Full confidence. We route you to the bottle. You never overpay for something wrong again.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="orn-filigree"><svg viewBox="0 0 800 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="14" x2="370" y2="14" stroke="#3a3f46" stroke-width="0.8"/><path d="M368,14 Q378,5 388,14 Q398,23 408,14" fill="none" stroke="#7a5c2e" stroke-width="1.2" opacity="0.9"/><path d="M378,14 Q382,5 388,8" fill="none" stroke="#9a7c3a" stroke-width="0.9" opacity="0.7"/><text x="400" y="18.5" font-family="serif" font-size="11" fill="#7a5c2e" opacity="0.6" text-anchor="middle">⚜</text><path d="M392,14 Q402,5 412,14 Q422,23 432,14" fill="none" stroke="#7a5c2e" stroke-width="1.2" opacity="0.9"/><path d="M412,14 Q418,5 424,8" fill="none" stroke="#9a7c3a" stroke-width="0.9" opacity="0.7"/><line x1="430" y1="14" x2="800" y2="14" stroke="#3a3f46" stroke-width="0.8"/></svg></div>
+
+  <!-- ORIGIN -->
+  <section class="s lp-origin r">
+    <div>
+      <p class="lp-origin-quote">Some people say they're the last of a dying breed. Only one kind of last one standing wears a crown.</p>
+    </div>
+    <div class="lp-origin-right">
+      <span class="mono">Origin · La Historia</span>
+      <p>He started with a tagline: <strong>"last of a dying breed."</strong> We kept the feeling. Lost the eulogy.</p>
+      <p>El Último doesn't mourn what's rare. It <strong>is</strong> what's rare — the guide, the curator, the last of his line. When everyone else is guessing at fragrance, he already knows your move.</p>
+      <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:15px; color:var(--bronze-lt); margin-top:6px;">último de su estirpe</p>
+    </div>
+  </section>
+
+  <div class="hrule"></div>
+</div>
+
+<!-- ════════════════════════════════════════
+     ② SHOP PAGE
+     ════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-shop">
+
+  <div class="shop-header">
+    <div class="shop-header-top">
+      <div>
+        <span class="mono">The Catalog · El Catálogo</span>
+        <h2 class="display" style="font-size:clamp(28px,4vw,44px);margin-bottom:0;">Every house.<br><em>Every move.</em></h2>
+      </div>
+      <div style="text-align:right;">
+        <p style="font-family:'Courier Prime',monospace;font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:var(--iron);margin-bottom:6px;">Showing 6 of 24</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--bronze-lt);">último de su estirpe</p>
+      </div>
+    </div>
+    <div class="shop-filters">
+      <button class="filter-btn active">♟ All</button>
+      <button class="filter-btn">♟ El Peón (2ml)</button>
+      <button class="filter-btn">♞ El Caballero (5ml)</button>
+      <button class="filter-btn">♔ El Último (10ml)</button>
+      <button class="filter-btn">Oud &amp; Resin</button>
+      <button class="filter-btn">Citrus &amp; Fresh</button>
+      <button class="filter-btn">Floral</button>
+      <button class="filter-btn">Woody</button>
+    </div>
+  </div>
+
+  <div class="shop-layout">
+    <!-- SIDEBAR -->
+    <aside class="shop-sidebar">
+      <div class="sidebar-section">
+        <p class="sidebar-title">Service Tier</p>
+        <div class="sidebar-option active">El Peón — 2ml</div>
+        <div class="sidebar-option">El Caballero — 5ml</div>
+        <div class="sidebar-option">El Último — 10ml</div>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-title">Fragrance Family</p>
+        <div class="sidebar-option active">All Families</div>
+        <div class="sidebar-option">Oud &amp; Resin</div>
+        <div class="sidebar-option">Woody &amp; Amber</div>
+        <div class="sidebar-option">Citrus &amp; Aromatic</div>
+        <div class="sidebar-option">Floral</div>
+        <div class="sidebar-option">Chypre</div>
+        <div class="sidebar-option">Fougère</div>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-title">House</p>
+        <div class="sidebar-option">Amouage</div>
+        <div class="sidebar-option">Nishane</div>
+        <div class="sidebar-option">Creed</div>
+        <div class="sidebar-option">Mind Games</div>
+        <div class="sidebar-option">Xerjoff</div>
+        <div class="sidebar-option">Frederic Malle</div>
+        <div class="sidebar-option">Parfums de Marly</div>
+        <div class="sidebar-option">+ Independent Houses</div>
+      </div>
+      <div class="sidebar-section">
+        <p class="sidebar-title">Occasion</p>
+        <div class="sidebar-option">Daily Armor</div>
+        <div class="sidebar-option">Power Move</div>
+        <div class="sidebar-option">Night Raid</div>
+        <div class="sidebar-option">Quiet Presence</div>
+      </div>
+    </aside>
+
+    <!-- PRODUCT GRID -->
+    <main class="shop-main">
+      <div class="product-grid">
+
+        <!-- Featured -->
+        <div class="product-card featured">
+          <div class="product-img" style="background:linear-gradient(135deg,var(--steel-dk),var(--void));">
+            <div class="product-tier-badge">♔ El Último Pick</div>
+            <div class="product-img-inner">
+              <svg class="bottle-svg" viewBox="0 0 80 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="30" y="0" width="20" height="10" rx="2" fill="#4a5058"/>
+                <rect x="26" y="10" width="28" height="8" rx="1" fill="#3a3f46"/>
+                <path d="M20 18 Q10 40 10 70 L10 170 Q10 190 40 190 Q70 190 70 170 L70 70 Q70 40 60 18 Z" fill="#242830" stroke="#4a5058" stroke-width="1"/>
+                <rect x="14" y="80" width="52" height="60" rx="1" fill="none" stroke="#8b1a1a" stroke-width="0.5" opacity="0.6"/>
+                <text x="40" y="103" font-family="serif" font-size="7" fill="#e8eaec" text-anchor="middle" font-style="italic">el</text>
+                <text x="40" y="117" font-family="serif" font-size="11" fill="#e8eaec" text-anchor="middle" font-weight="bold">Último</text>
+                <text x="40" y="128" font-family="monospace" font-size="4.5" fill="#8c9199" text-anchor="middle" letter-spacing="1">FRAGRANCE</text>
+                <line x1="20" y1="134" x2="60" y2="134" stroke="#7a5c2e" stroke-width="0.5" opacity="0.7"/>
+                <rect x="10" y="160" width="60" height="2" rx="1" fill="#8b1a1a" opacity="0.4"/>
+              </svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <p class="product-house">Amouage · Interlude Man</p>
+            <p class="product-name">El Último Selection</p>
+            <p class="product-sub">The chaos harvester. Spice, smoke, resin.</p>
+            <div class="product-notes">
+              <span class="note-tag">Oregano</span>
+              <span class="note-tag">Incense</span>
+              <span class="note-tag">Amber</span>
+              <span class="note-tag">Oud</span>
+              <span class="note-tag">Labdanum</span>
+            </div>
+            <div class="product-price-row">
+              <div>
+                <p class="product-price">$18</p>
+                <p class="product-ml">10ml · El Último tier</p>
+              </div>
+              <button class="product-add">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 1 -->
+        <div class="product-card">
+          <div class="product-img" style="background:linear-gradient(160deg,#1a1c1e,var(--void));">
+            <div class="product-tier-badge">♟ El Peón</div>
+            <div class="product-img-inner">
+              <svg class="bottle-svg" viewBox="0 0 80 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="30" y="0" width="20" height="10" rx="2" fill="#2e3338"/>
+                <rect x="26" y="10" width="28" height="8" rx="1" fill="#242830"/>
+                <path d="M22 18 Q14 38 14 65 L14 170 Q14 188 40 188 Q66 188 66 170 L66 65 Q66 38 58 18 Z" fill="#1a1c1e" stroke="#3a3f46" stroke-width="1"/>
+                <rect x="17" y="80" width="46" height="55" rx="1" fill="none" stroke="#7a5c2e" stroke-width="0.5" opacity="0.5"/>
+                <text x="40" y="103" font-family="serif" font-size="6.5" fill="#c4b49a" text-anchor="middle" font-style="italic">Nishane</text>
+                <text x="40" y="118" font-family="serif" font-size="9" fill="#e8eaec" text-anchor="middle" font-weight="bold">Hacivat</text>
+                <line x1="22" y1="125" x2="58" y2="125" stroke="#7a5c2e" stroke-width="0.4" opacity="0.6"/>
+              </svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <p class="product-house">Nishane · Hacivat</p>
+            <p class="product-name">La Apertura</p>
+            <p class="product-sub">The opening move. Summer in a vial.</p>
+            <div class="product-notes">
+              <span class="note-tag">Bergamot</span>
+              <span class="note-tag">Pineapple</span>
+              <span class="note-tag">Vetiver</span>
+            </div>
+            <div class="product-price-row">
+              <div>
+                <p class="product-price">$6</p>
+                <p class="product-ml">2ml · El Peón tier</p>
+              </div>
+              <button class="product-add">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="product-card">
+          <div class="product-img" style="background:linear-gradient(160deg,#1c1a1a,var(--void));">
+            <div class="product-tier-badge">♞ El Caballero</div>
+            <div class="product-img-inner">
+              <svg class="bottle-svg" viewBox="0 0 80 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="30" y="0" width="20" height="12" rx="2" fill="#3a3f46"/>
+                <rect x="25" y="12" width="30" height="7" rx="1" fill="#2e3338"/>
+                <path d="M18 19 Q8 42 8 72 L8 168 Q8 190 40 190 Q72 190 72 168 L72 72 Q72 42 62 19 Z" fill="#1c1a1a" stroke="#3a3f46" stroke-width="1"/>
+                <rect x="12" y="82" width="56" height="58" rx="1" fill="none" stroke="#8b1a1a" stroke-width="0.5" opacity="0.6"/>
+                <text x="40" y="105" font-family="serif" font-size="6" fill="#8c9199" text-anchor="middle" font-style="italic">Mind Games</text>
+                <text x="40" y="120" font-family="serif" font-size="10" fill="#e8eaec" text-anchor="middle" font-weight="bold">Kingside</text>
+                <text x="40" y="132" font-family="monospace" font-size="4" fill="#8b1a1a" text-anchor="middle" letter-spacing="1">♔</text>
+              </svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <p class="product-house">Mind Games · Kingside</p>
+            <p class="product-name">El Caballero</p>
+            <p class="product-sub">Attack posture. Bold, strategic, unforgettable.</p>
+            <div class="product-notes">
+              <span class="note-tag">Tobacco</span>
+              <span class="note-tag">Leather</span>
+              <span class="note-tag">Vetiver</span>
+              <span class="note-tag">Dark Musk</span>
+            </div>
+            <div class="product-price-row">
+              <div>
+                <p class="product-price">$12</p>
+                <p class="product-ml">5ml · El Caballero tier</p>
+              </div>
+              <button class="product-add">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="product-card">
+          <div class="product-img" style="background:linear-gradient(160deg,#181614,var(--void));">
+            <div class="product-tier-badge">♟ El Peón</div>
+            <div class="product-img-inner">
+              <svg class="bottle-svg" viewBox="0 0 80 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="28" y="0" width="24" height="10" rx="3" fill="#4a5058"/>
+                <rect x="24" y="10" width="32" height="8" rx="1" fill="#3a3f46"/>
+                <path d="M16 18 Q6 40 6 68 L6 166 Q6 188 40 188 Q74 188 74 166 L74 68 Q74 40 64 18 Z" fill="#181614" stroke="#4a5058" stroke-width="1.5"/>
+                <rect x="10" y="78" width="60" height="62" rx="1" fill="none" stroke="#9a7c3a" stroke-width="0.6" opacity="0.5"/>
+                <text x="40" y="102" font-family="serif" font-size="6" fill="#b8bcc2" text-anchor="middle" font-style="italic">Creed</text>
+                <text x="40" y="116" font-family="serif" font-size="9.5" fill="#e8eaec" text-anchor="middle" font-weight="bold">Aventus</text>
+                <line x1="18" y1="122" x2="62" y2="122" stroke="#9a7c3a" stroke-width="0.5" opacity="0.5"/>
+              </svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <p class="product-house">Creed · Aventus</p>
+            <p class="product-name">La Leyenda</p>
+            <p class="product-sub">The legend. Try it before the myth gets in the way.</p>
+            <div class="product-notes">
+              <span class="note-tag">Pineapple</span>
+              <span class="note-tag">Birch</span>
+              <span class="note-tag">Musk</span>
+            </div>
+            <div class="product-price-row">
+              <div>
+                <p class="product-price">$7</p>
+                <p class="product-ml">2ml · El Peón tier</p>
+              </div>
+              <button class="product-add">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="product-card">
+          <div class="product-img" style="background:linear-gradient(160deg,#131313,var(--void));">
+            <div class="product-tier-badge">♔ El Último</div>
+            <div class="product-img-inner">
+              <svg class="bottle-svg" viewBox="0 0 80 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="32" y="0" width="16" height="12" rx="2" fill="#2e3338"/>
+                <rect x="28" y="12" width="24" height="7" rx="1" fill="#242830"/>
+                <path d="M24 19 Q18 38 18 62 L18 172 Q18 186 40 186 Q62 186 62 172 L62 62 Q62 38 56 19 Z" fill="#131313" stroke="#2e3338" stroke-width="1"/>
+                <rect x="20" y="75" width="40" height="68" rx="1" fill="none" stroke="#5e6470" stroke-width="0.5" opacity="0.6"/>
+                <text x="40" y="98" font-family="serif" font-size="5.5" fill="#8c9199" text-anchor="middle">Parfums de Marly</text>
+                <text x="40" y="114" font-family="serif" font-size="9" fill="#e8eaec" text-anchor="middle" font-weight="bold">Herod</text>
+                <text x="40" y="126" font-family="serif" font-size="5.5" fill="#7a5c2e" text-anchor="middle" font-style="italic">extrait</text>
+              </svg>
+            </div>
+          </div>
+          <div class="product-info">
+            <p class="product-house">Parfums de Marly · Herod</p>
+            <p class="product-name">El Rey de Invierno</p>
+            <p class="product-sub">Tobacco, vanilla, wood. The winter king.</p>
+            <div class="product-notes">
+              <span class="note-tag">Tobacco</span>
+              <span class="note-tag">Vanilla</span>
+              <span class="note-tag">Cypress</span>
+            </div>
+            <div class="product-price-row">
+              <div>
+                <p class="product-price">$19</p>
+                <p class="product-ml">10ml · El Último tier</p>
+              </div>
+              <button class="product-add">+</button>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /product-grid -->
+    </main>
+  </div><!-- /shop-layout -->
+
+</div>
+
+<!-- ════════════════════════════════════════
+     ③ PACKAGING
+     ════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-packaging">
+  <section class="s r">
+    <span class="mono">Packaging · El Envase</span>
+    <h2 class="display">Toledo steel.<br><em>In your hands.</em></h2>
+
+    <div class="pkg-intro">
+      <!-- Box Mockup -->
+      <div>
+        <div class="box-mockup">
+          <div class="box-face">
+            <p class="box-heraldic-top">⚔ ♔ ⚔</p>
+            <div class="box-wordmark">
+              <span class="box-el">el</span>
+              <span class="box-ultimo">Último</span>
+              <span class="box-lineage">último de su estirpe</span>
+            </div>
+            <div class="box-bottom-rule"></div>
+          </div>
+        </div>
+        <p style="font-family:'Courier Prime',monospace;font-size:8px;letter-spacing:.32em;text-transform:uppercase;color:var(--iron);text-align:center;margin-top:16px;">Outer Box · Matte Black Rigid</p>
+      </div>
+
+      <!-- Description -->
+      <div>
+        <p class="prose">The packaging is the first argument. Before the scent, before the bottle, the <strong>box</strong> has to communicate that you just bought something that matters.</p>
+        <p class="prose" style="margin-top:16px;">The reference is Toledo steel — the armor worn by the Spanish knights of the Reconquista. <strong>Cold, heavy, precise.</strong> Gunmetal surfaces with a single blood-red heraldic border inside the lid. Bronze foil on the wordmark. Chain mail texture debossed into the outer lid.</p>
+        <p class="prose" style="margin-top:16px;">The interior is different: <strong>black suede liner</strong> with a silver foil "último de su estirpe" stamped at the base. The vial sits in a precision-cut foam inset. There's a small card — matte black, letterpress — with the scent profile and your chess move notation.</p>
+
+        <!-- Material swatches -->
+        <div class="mat-swatches" style="margin-top:32px;">
+          <div class="mat-swatch">
+            <div class="mat-chip" style="background:#1a1c1e;border:1px solid var(--rim);">
+              <span style="font-size:10px;color:var(--iron);">□</span>
+            </div>
+            <span class="mat-label">Matte Black<br>Rigid Board</span>
+          </div>
+          <div class="mat-swatch">
+            <div class="mat-chip" style="background:linear-gradient(135deg,#4a5058,#8c9199,#4a5058);">
+            </div>
+            <span class="mat-label">Gunmetal<br>Foil Stamp</span>
+          </div>
+          <div class="mat-swatch">
+            <div class="mat-chip" style="background:linear-gradient(135deg,#5a4020,#9a7c3a,#5a4020);">
+            </div>
+            <span class="mat-label">Bronze<br>Foil — Name</span>
+          </div>
+          <div class="mat-swatch">
+            <div class="mat-chip" style="background:var(--blood);">
+            </div>
+            <span class="mat-label">Blood Red<br>Interior Edge</span>
+          </div>
+          <div class="mat-swatch">
+            <div class="mat-chip" style="background:#1a1614;border:1px solid #2a2622;">
+              <span style="font-size:10px;color:var(--iron);">▤</span>
+            </div>
+            <span class="mat-label">Black Suede<br>Liner</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spec cards -->
+    <div class="pkg-specs r">
+      <div class="pkg-spec">
+        <p class="pkg-spec-label">♔ Outer Box</p>
+        <p class="pkg-spec-title">The Armor</p>
+        <p class="pkg-spec-body"><strong>Material:</strong> 2mm rigid chipboard, matte black laminate, chain mail texture deboss on lid.<br><br><strong>Closure:</strong> Magnetic ribbon pull — no tab, no tuck. It opens like a vault.<br><br><strong>Exterior detail:</strong> Bronze foil wordmark. Gunmetal chess king crest above brand name. Hairline red border inset 3mm from edge.<br><br><strong>Outer size:</strong> Custom-fit per tier (Peón / Caballero / Último).</p>
+      </div>
+      <div class="pkg-spec">
+        <p class="pkg-spec-label">♟ Interior</p>
+        <p class="pkg-spec-title">The Chamber</p>
+        <p class="pkg-spec-body"><strong>Liner:</strong> Black suede paper — tactile, not glossy. Silver foil "último de su estirpe" stamp at base.<br><br><strong>Inset:</strong> Precision-cut black foam for the vial. Zero movement. The vial is not rattling.<br><br><strong>Insert card:</strong> Matte black, 300gsm. Letterpress in silver: scent name, house, notes, and the chess move notation of their tier. Blind emboss of the king piece.</p>
+      </div>
+      <div class="pkg-spec">
+        <p class="pkg-spec-label">♞ The Vial</p>
+        <p class="pkg-spec-title">El Frasco</p>
+        <p class="pkg-spec-body"><strong>Glass:</strong> Heavy-walled clear or dark amber glass depending on tier. Peón = slender 2ml; Caballero = cylindrical 5ml; Último = wide-base 10ml atomizer.<br><br><strong>Cap:</strong> Gunmetal aluminum. Screw thread, not push-on. The weight should be noticeable.<br><br><strong>Label:</strong> Matte black paper wrap. Foil crest + scent name in Cormorant. Tier piece (♟ ♞ ♔) on the base band.</p>
+      </div>
+      <div class="pkg-spec">
+        <p class="pkg-spec-label">⚔ Heraldic Motif</p>
+        <p class="pkg-spec-title">The Crest System</p>
+        <p class="pkg-spec-body"><strong>Primary mark:</strong> ♔ — Unicode king, set in Cormorant at display weight. No custom illustration needed at launch; the piece is the crest.<br><br><strong>Secondary mark:</strong> "⚔ ♔ ⚔" — crossed swords framing the king. Used on box lid interior, insert card header, and wax seal (future).<br><br><strong>Future:</strong> Custom illustrated heraldic crest combining a chess king with a Castilian castle tower. Commission when budget allows.</p>
+      </div>
+    </div>
+
+    <!-- Bottle variants -->
+    <div class="r">
+      <span class="mono" style="margin-top:52px;display:block;">Bottle System · Los Frascos</span>
+      <h3 class="display" style="font-size:clamp(24px,3.5vw,38px);">Three tiers.<br><em>Three weights.</em></h3>
+    </div>
+    <div class="bottle-variants r">
+      <div class="bottle-variant">
+        <p class="bottle-variant-label">♟ El Peón · 2ml</p>
+        <svg width="60" height="130" viewBox="0 0 60 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="22" y="0" width="16" height="8" rx="2" fill="#3a3f46"/>
+          <rect x="19" y="8" width="22" height="6" rx="1" fill="#2e3338"/>
+          <path d="M14 14 Q8 28 8 48 L8 110 Q8 124 30 124 Q52 124 52 110 L52 48 Q52 28 46 14 Z" fill="#1a1c1e" stroke="#3a3f46" stroke-width="1"/>
+          <rect x="10" y="54" width="40" height="38" rx="1" fill="none" stroke="#8b1a1a" stroke-width="0.5" opacity="0.5"/>
+          <text x="30" y="69" font-family="serif" font-size="5" fill="#8c9199" text-anchor="middle" font-style="italic">el</text>
+          <text x="30" y="81" font-family="serif" font-size="7.5" fill="#e8eaec" text-anchor="middle" font-weight="bold">Último</text>
+          <text x="30" y="88" font-family="monospace" font-size="3.5" fill="#7a5c2e" text-anchor="middle">♟</text>
+        </svg>
+        <p class="bottle-variant-name">El Peón</p>
+        <p class="bottle-variant-desc">Slender. Slight. The first encounter — light enough to forget, strong enough to remember.</p>
+      </div>
+      <div class="bottle-variant">
+        <p class="bottle-variant-label">♞ El Caballero · 5ml</p>
+        <svg width="70" height="160" viewBox="0 0 70 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="24" y="0" width="22" height="10" rx="2" fill="#4a5058"/>
+          <rect x="20" y="10" width="30" height="7" rx="1" fill="#3a3f46"/>
+          <path d="M12 17 Q4 36 4 58 L4 136 Q4 152 35 152 Q66 152 66 136 L66 58 Q66 36 58 17 Z" fill="#1c1a1e" stroke="#3a3f46" stroke-width="1.2"/>
+          <rect x="8" y="65" width="54" height="52" rx="1" fill="none" stroke="#7a5c2e" stroke-width="0.6" opacity="0.5"/>
+          <text x="35" y="86" font-family="serif" font-size="5.5" fill="#8c9199" text-anchor="middle" font-style="italic">el</text>
+          <text x="35" y="100" font-family="serif" font-size="9" fill="#e8eaec" text-anchor="middle" font-weight="bold">Último</text>
+          <text x="35" y="110" font-family="monospace" font-size="4" fill="#7a5c2e" text-anchor="middle">♞</text>
+        </svg>
+        <p class="bottle-variant-name">El Caballero</p>
+        <p class="bottle-variant-desc">Cylindrical. Substantial. Sits right in the palm — the weight of a decision made with confidence.</p>
+      </div>
+      <div class="bottle-variant">
+        <p class="bottle-variant-label">♔ El Último · 10ml</p>
+        <svg width="80" height="185" viewBox="0 0 80 185" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="28" y="0" width="24" height="12" rx="3" fill="#5e6470"/>
+          <rect x="22" y="12" width="36" height="8" rx="1" fill="#4a5058"/>
+          <path d="M10 20 Q2 42 2 68 L2 158 Q2 178 40 178 Q78 178 78 158 L78 68 Q78 42 70 20 Z" fill="#181614" stroke="#4a5058" stroke-width="1.5"/>
+          <rect x="8" y="78" width="64" height="66" rx="1" fill="none" stroke="#8b1a1a" stroke-width="0.7" opacity="0.6"/>
+          <line x1="8" y1="86" x2="72" y2="86" stroke="#8b1a1a" stroke-width="0.3" opacity="0.3"/>
+          <line x1="8" y1="136" x2="72" y2="136" stroke="#8b1a1a" stroke-width="0.3" opacity="0.3"/>
+          <text x="40" y="103" font-family="serif" font-size="6" fill="#8c9199" text-anchor="middle" font-style="italic">el</text>
+          <text x="40" y="119" font-family="serif" font-size="12" fill="#e8eaec" text-anchor="middle" font-weight="bold">Último</text>
+          <text x="40" y="130" font-family="monospace" font-size="4.5" fill="#9a7c3a" text-anchor="middle">♔ · EXTRAIT</text>
+          <rect x="2" y="158" width="76" height="3" rx="1" fill="#8b1a1a" opacity="0.3"/>
+        </svg>
+        <p class="bottle-variant-name">El Último</p>
+        <p class="bottle-variant-desc">Wide-base atomizer. Gunmetal cap. This is the one. Heavy enough to matter. Light enough to carry.</p>
+      </div>
+    </div>
+
+    <!-- Reference inspo board -->
+    <div class="r" style="margin-top:52px;">
+      <span class="mono">Visual References · La Inspiración</span>
+      <h3 class="display" style="font-size:clamp(22px,3.2vw,36px);">What we're pulling from.</h3>
+    </div>
+    <div class="inspo-grid r">
+      <div class="inspo-card">
+        <div class="inspo-icon">⚔</div>
+        <p class="inspo-label">Toledo Steel</p>
+        <p class="inspo-text">Sword blades, armor, the cold blue-grey of worked metal. The surface texture of hammered iron.</p>
+      </div>
+      <div class="inspo-card">
+        <div class="inspo-icon">♟</div>
+        <p class="inspo-label">Chess Pieces</p>
+        <p class="inspo-text">Weighted Staunton sets in dark walnut and metal. The feel of a piece being placed with intent.</p>
+      </div>
+      <div class="inspo-card">
+        <div class="inspo-icon">📜</div>
+        <p class="inspo-label">Illuminated Manuscripts</p>
+        <p class="inspo-text">Spanish medieval codices — dense borders, blood-red initial caps, gold-leaf ornament on dark vellum.</p>
+      </div>
+      <div class="inspo-card">
+        <div class="inspo-icon">🏰</div>
+        <p class="inspo-label">Castilian Heraldry</p>
+        <p class="inspo-text">The castle of Castile. Crossed swords. The double-headed eagle. Bold, geometric, unapologetic.</p>
+      </div>
+      <div class="inspo-card">
+        <div class="inspo-icon">🔴</div>
+        <p class="inspo-label">La Sangre · Blood Red</p>
+        <p class="inspo-text">Single warm accent only. Wax seal, interior edge, heraldic border. Never background.</p>
+      </div>
+      <div class="inspo-card">
+        <div class="inspo-icon">🥉</div>
+        <p class="inspo-label">Hammered Bronze</p>
+        <p class="inspo-text">Belt buckles, armor rivets, old coins. The aged warmth against cold gunmetal. Hierarchy marker.</p>
+      </div>
+      <div class="inspo-card">
+        <div class="inspo-icon">🌑</div>
+        <p class="inspo-label">Void Black</p>
+        <p class="inspo-text">Not charcoal. Not navy. The absolute black of a room before a torch is lit. Ground for everything.</p>
+      </div>
+      <div class="inspo-card">
+        <div class="inspo-icon">🔗</div>
+        <p class="inspo-label">Chain Mail Texture</p>
+        <p class="inspo-text">Interlocking rings as background texture. Subtle — 4–6% opacity. Present but not decorative.</p>
+      </div>
+    </div>
+
+  </section>
+</div>
+
+<!-- ════════════════════════════════════════
+     ④ BRAND FOLIO + TO-DO
+     ════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-folio">
+  <section class="s r">
+    <span class="mono">Brand Folio · El Archivo</span>
+    <h2 class="display">Everything it takes<br><em>to build the board.</em></h2>
+    <p class="prose">The full web presence, business infrastructure, and brand buildout for El Último — DBA under Hopefully Abysmal LLC. Phased by priority: launch-critical, growth, and long-game.</p>
+  </section>
+
+  <div class="orn"><div class="orn-line"></div><span class="orn-glyph">♔</span><div class="orn-line"></div></div>
+
+  <section class="s sm">
+    <div class="folio-grid">
+
+      <!-- LEFT COLUMN -->
+      <div>
+
+        <div class="phase-header">
+          <div class="phase-num">I</div>
+          <div>
+            <p class="phase-name">Foundation</p>
+            <p class="checklist-sub">Before you take a single order</p>
+          </div>
+          <span class="phase-sub">Now</span>
+        </div>
+        <div class="checklist-wrap">
+          <ul class="checklist">
+            <li class="done"><div class="ck"></div>Brand identity system (name, palette, voice)<span class="priority p-now">done ✓</span></li>
+            <li class="done"><div class="ck"></div>Brand folio artifact (this document)<span class="priority p-now">done ✓</span></li>
+            <li><div class="ck"></div>DBA registration — Hopefully Abysmal LLC<span class="priority p-now">now</span></li>
+            <li><div class="ck"></div>Domain acquisition — elultimo.com / elultimofragrance.com<span class="priority p-now">now</span></li>
+            <li><div class="ck"></div>Instagram @elultimo secured<span class="priority p-now">now</span></li>
+            <li><div class="ck"></div>TikTok @elultimo secured<span class="priority p-now">now</span></li>
+            <li><div class="ck"></div>Business email — hello@elultimo.com<span class="priority p-now">now</span></li>
+            <li><div class="ck"></div>Decanting licenses / legal review (varies by state)<span class="priority p-now">now</span></li>
+            <li><div class="ck"></div>Supplier agreements (houses you decant from)<span class="priority p-now">now</span></li>
+            <li><div class="ck"></div>Stripe / payment processor setup<span class="priority p-now">now</span></li>
+          </ul>
+        </div>
+
+        <div class="phase-header">
+          <div class="phase-num">II</div>
+          <div>
+            <p class="phase-name">Web Presence</p>
+            <p class="checklist-sub">The digital board</p>
+          </div>
+          <span class="phase-sub">Next</span>
+        </div>
+        <div class="checklist-wrap">
+          <ul class="checklist">
+            <li class="done"><div class="ck"></div>Landing page design (v2 — this folio)<span class="priority p-now">done ✓</span></li>
+            <li class="done"><div class="ck"></div>Shop page design (this folio)<span class="priority p-now">done ✓</span></li>
+            <li><div class="ck"></div>Platform decision — Shopify vs Webflow + Stripe<span class="priority p-next">next</span></li>
+            <li><div class="ck"></div>Build landing page (production)<span class="priority p-next">next</span></li>
+            <li><div class="ck"></div>Build shop / product catalog<span class="priority p-next">next</span></li>
+            <li><div class="ck"></div>Product photography setup — vials on chain mail surface<span class="priority p-next">next</span></li>
+            <li><div class="ck"></div>Scent routing quiz ("what's your opening move?")<span class="priority p-next">next</span></li>
+            <li><div class="ck"></div>About page — uncle's story / El Último origin<span class="priority p-next">next</span></li>
+            <li><div class="ck"></div>Contact / consultation booking (Cal.com embed)<span class="priority p-next">next</span></li>
+            <li><div class="ck"></div>Mobile optimization pass<span class="priority p-next">next</span></li>
+            <li><div class="ck"></div>Order tracking / fulfillment integration<span class="priority p-next">next</span></li>
+            <li><div class="ck"></div>Email capture + welcome sequence<span class="priority p-next">next</span></li>
+          </ul>
+        </div>
+
+        <div class="phase-header">
+          <div class="phase-num">III</div>
+          <div>
+            <p class="phase-name">Content Engine</p>
+            <p class="checklist-sub">Turning chess into content</p>
+          </div>
+          <span class="phase-sub">Growth</span>
+        </div>
+        <div class="checklist-wrap">
+          <ul class="checklist">
+            <li><div class="ck"></div>TikTok series — "What's your opening move?" routing videos<span class="priority p-next">next</span></li>
+            <li><div class="ck"></div>Instagram grid — dark editorial, chess + scent<span class="priority p-next">next</span></li>
+            <li><div class="ck"></div>Scent profiles written for each product (editorial tone)<span class="priority p-next">next</span></li>
+            <li><div class="ck"></div>"The Gambit" — email newsletter (scent drop + chess move each issue)<span class="priority p-later">later</span></li>
+            <li><div class="ck"></div>YouTube / Reels — unboxing in red room (like your photos)<span class="priority p-later">later</span></li>
+            <li><div class="ck"></div>Chess opening → scent pairing editorial posts<span class="priority p-later">later</span></li>
+            <li><div class="ck"></div>Fragrantica presence — brand account + reviews<span class="priority p-later">later</span></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div>
+
+        <div class="phase-header">
+          <div class="phase-num">IV</div>
+          <div>
+            <p class="phase-name">Packaging</p>
+            <p class="checklist-sub">The unboxing is the brand</p>
+          </div>
+          <span class="phase-sub">Next</span>
+        </div>
+        <div class="checklist-wrap">
+          <ul class="checklist">
+            <li class="done"><div class="ck"></div>Packaging ideation + spec (this folio)<span class="priority p-now">done ✓</span></li>
+            <li><div class="ck"></div>Vial sourcing — 2ml / 5ml / 10ml atomizers<span class="priority p-now">now</span></li>
+            <li><div class="ck"></div>Label design — Cormorant + tier piece mark<span class="priority p-next">next</span></li>
+            <li><div class="ck"></div>Label printing — matte black, foil detail<span class="priority p-next">next</span></li>
+            <li><div class="ck"></div>Outer box prototype — rigid matte black, chain mail deboss<span class="priority p-next">next</span></li>
+            <li><div class="ck"></div>Suede liner spec + sourcing<span class="priority p-next">next</span></li>
+            <li><div class="ck"></div>Insert card design + letterpress quote<span class="priority p-next">next</span></li>
+            <li><div class="ck"></div>Wax seal — king piece stamp<span class="priority p-later">later</span></li>
+            <li><div class="ck"></div>Custom heraldic crest illustration (commission)<span class="priority p-later">later</span></li>
+            <li><div class="ck"></div>Tier-specific box sizing (Peón / Caballero / Último)<span class="priority p-later">later</span></li>
+          </ul>
+        </div>
+
+        <div class="phase-header">
+          <div class="phase-num">V</div>
+          <div>
+            <p class="phase-name">Interactive / Tech</p>
+            <p class="checklist-sub">Making chess functional</p>
+          </div>
+          <span class="phase-sub">Later</span>
+        </div>
+        <div class="checklist-wrap">
+          <ul class="checklist">
+            <li><div class="ck"></div>Chess opening quiz → scent profile router<span class="priority p-next">next</span></li>
+            <li><div class="ck"></div>Interactive board — opening move unlocks a scent recommendation<span class="priority p-later">later</span></li>
+            <li><div class="ck"></div>Customer profile — saved "board state" (their scent profile)<span class="priority p-later">later</span></li>
+            <li><div class="ck"></div>Game notation on every order confirmation email<span class="priority p-later">later</span></li>
+            <li><div class="ck"></div>Loader / entry experience — chess board, make your move<span class="priority p-later">later</span></li>
+            <li><div class="ck"></div>"Beat the bot" entry gate (your idea — strong)<span class="priority p-later">later</span></li>
+            <li><div class="ck"></div>Loyalty system — pieces earned with each purchase<span class="priority p-later">later</span></li>
+          </ul>
+        </div>
+
+        <div class="phase-header">
+          <div class="phase-num">VI</div>
+          <div>
+            <p class="phase-name">Business Dev</p>
+            <p class="checklist-sub">The long game</p>
+          </div>
+          <span class="phase-sub">Later</span>
+        </div>
+        <div class="checklist-wrap">
+          <ul class="checklist">
+            <li><div class="ck"></div>Wholesale / house relationships (Symrise partners first)<span class="priority p-later">later</span></li>
+            <li><div class="ck"></div>Pop-up / consultation events — chess club crossover<span class="priority p-later">later</span></li>
+            <li><div class="ck"></div>Collab with chess community (Chess.com, local clubs)<span class="priority p-later">later</span></li>
+            <li><div class="ck"></div>Custom house blend — El Último signature fragrance<span class="priority p-later">later</span></li>
+            <li><div class="ck"></div>Subscription box — "La Apertura" monthly opening move<span class="priority p-later">later</span></li>
+            <li><div class="ck"></div>ARX Foundation open music collab — Desire Paths × El Último<span class="priority p-later">later</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </div><!-- /folio-grid -->
+  </section>
+
+  <div class="orn"><div class="orn-line"></div><span class="orn-glyph">♟</span><div class="orn-line"></div></div>
+
+  <!-- Brand Identity Quick Ref -->
+  <section class="s sm r">
+    <span class="mono">Quick Reference · La Guía</span>
+    <h3 class="display" style="font-size:clamp(24px,3.5vw,40px);">Brand at a glance.</h3>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rim);border:1px solid var(--rim);">
+      <div style="background:var(--deep);padding:28px 24px;">
+        <p class="pkg-spec-label">Name</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;font-style:italic;color:var(--white);margin-bottom:8px;">El Último</p>
+        <p style="font-family:'Courier Prime',monospace;font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:var(--bronze-lt);">último de su estirpe</p>
+      </div>
+      <div style="background:var(--deep);padding:28px 24px;">
+        <p class="pkg-spec-label">Structure</p>
+        <p style="font-size:13px;line-height:1.8;color:var(--iron);">DBA under<br><strong style="color:var(--mist);">Hopefully Abysmal LLC</strong><br>Operator: @elultimo</p>
+      </div>
+      <div style="background:var(--deep);padding:28px 24px;">
+        <p class="pkg-spec-label">Primary Taglines</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--bronze-lt);line-height:2;">último de su estirpe<br>every scent is a strategy<br>el rey de tu aroma</p>
+      </div>
+      <div style="background:var(--deep);padding:28px 24px;">
+        <p class="pkg-spec-label">Palette</p>
+        <div style="display:flex;gap:6px;margin-top:10px;">
+          <div style="width:28px;height:28px;background:#0c0d0e;border:1px solid var(--rim);border-radius:1px;"></div>
+          <div style="width:28px;height:28px;background:#2e3338;border-radius:1px;"></div>
+          <div style="width:28px;height:28px;background:#8c9199;border-radius:1px;"></div>
+          <div style="width:28px;height:28px;background:#8b1a1a;border-radius:1px;"></div>
+          <div style="width:28px;height:28px;background:#7a5c2e;border-radius:1px;"></div>
+          <div style="width:28px;height:28px;background:#e8eaec;border-radius:1px;"></div>
+        </div>
+        <p style="font-family:'Courier Prime',monospace;font-size:7px;letter-spacing:.2em;color:var(--iron);margin-top:10px;">VOID · STEEL · SILVER · BLOOD · BRONZE · WHITE</p>
+      </div>
+      <div style="background:var(--deep);padding:28px 24px;">
+        <p class="pkg-spec-label">Typography</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:4px;">Cormorant Garamond</p>
+        <p style="font-family:'Libre Baskerville',serif;font-size:12px;color:var(--silver);margin-bottom:4px;">Libre Baskerville — body</p>
+        <p style="font-family:'Courier Prime',monospace;font-size:10px;color:var(--iron);">Courier Prime — mono/notation</p>
+      </div>
+      <div style="background:var(--deep);padding:28px 24px;">
+        <p class="pkg-spec-label">Tiers</p>
+        <p style="font-size:13px;line-height:2.2;color:var(--iron);">
+          <span style="color:var(--blood-lt);">♟</span> El Peón — 2ml<br>
+          <span style="color:var(--blood-lt);">♞</span> El Caballero — 5ml<br>
+          <span style="color:var(--blood-lt);">♔</span> El Último — 10ml
+        </p>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /tab-folio -->
+
+</div><!-- /shell -->
+
+<script>
+// Tab switching
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + target).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+// Build hero chessboard
+const lpChess = document.getElementById('lp-chess');
+if (lpChess) {
+  for (let r = 0; r < 8; r++) {
+    for (let c = 0; c < 8; c++) {
+      const sq = document.createElement('div');
+      sq.className = 'sq ' + ((r + c) % 2 === 0 ? 'light' : 'dark');
+      lpChess.appendChild(sq);
+    }
+  }
+}
+
+// Filter buttons (visual only)
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.closest('.shop-filters').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// Sidebar options
+document.querySelectorAll('.sidebar-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    opt.closest('.sidebar-section').querySelectorAll('.sidebar-option').forEach(o => o.classList.remove('active'));
+    opt.classList.add('active');
+  });
+});
+
+// Reveal on scroll
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('v'); });
+}, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.r').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

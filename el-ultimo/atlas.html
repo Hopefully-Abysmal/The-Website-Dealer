@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FRAGRANCE WEB DESIGN ATLAS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0c0d0e;
+    --cream: #e8eaec;
+    --dim: #3a3f46;
+    --muted: #5e6470;
+    --grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+
+    /* house accents */
+    --byredo: #c8b89a;
+    --lelabo: #b5a47c;
+    --malle: #a83232;
+    --mfk: #8fafc4;
+    --creed: #8a9e7a;
+    --amouage: #c0953a;
+    --mindgames: #cc3333;
+    --nishane: #9b7bb5;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'Libre Baskerville', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: var(--grain);
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 18px 40px;
+    background: rgba(12,13,14,0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(232,234,236,0.08);
+  }
+
+  .nav-cluster {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .nav-twd {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    align-items: center;
+  }
+
+  .nav-twd a {
+    font-family: 'Courier Prime', monospace;
+    font-size: 8px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .nav-twd a:hover {
+    color: var(--cream);
+    border-bottom-color: #8b1a1a;
+  }
+
+  .nav-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .nav-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--cream);
+    opacity: 0.3;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 80px 40px 60px;
+    position: relative;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(240,234,216,0.15), transparent);
+  }
+
+  .hero-kicker {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 9vw, 120px);
+    font-weight: 700;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    margin-bottom: 40px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  .hero-sub {
+    max-width: 560px;
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.75;
+    font-style: italic;
+    border-left: 1px solid rgba(240,234,216,0.15);
+    padding-left: 20px;
+  }
+
+  .hero-scroll {
+    margin-top: 60px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(240,234,216,0.3);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .hero-scroll::before {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: currentColor;
+  }
+
+  /* SECTION STRUCTURE */
+  .section-intro {
+    padding: 120px 40px 60px;
+    border-top: 1px solid rgba(240,234,216,0.06);
+  }
+
+  .section-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .section-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  .section-body {
+    max-width: 640px;
+    color: rgba(240,234,216,0.7);
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  /* HOUSE CARDS */
+  .houses {
+    padding: 20px 40px 80px;
+  }
+
+  .house {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid rgba(240,234,216,0.08);
+    padding: 60px 0;
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .house.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .house:last-child {
+    border-bottom: 1px solid rgba(240,234,216,0.08);
+  }
+
+  .house-left {
+    padding-right: 60px;
+    border-right: 1px solid rgba(240,234,216,0.06);
+  }
+
+  .house-right {
+    padding-left: 60px;
+  }
+
+  .house-index {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .house-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 8px;
+  }
+
+  .house-tagline {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 15px;
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  .house-accent-bar {
+    height: 2px;
+    width: 48px;
+    margin-bottom: 28px;
+    border-radius: 1px;
+  }
+
+  .house-desc {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(240,234,216,0.75);
+    margin-bottom: 28px;
+  }
+
+  .house-verdict {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    line-height: 1.7;
+    padding: 16px;
+    border: 1px solid rgba(240,234,216,0.1);
+    border-radius: 2px;
+  }
+
+  .house-verdict strong {
+    color: var(--cream);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 9px;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  /* DESIGN ATTRIBUTES */
+  .attrs {
+    margin-top: 0;
+  }
+
+  .attr-row {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .attr {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .attr-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .attr-value {
+    font-size: 14px;
+    color: rgba(240,234,216,0.85);
+  }
+
+  .attr-bar-track {
+    height: 2px;
+    background: rgba(240,234,216,0.08);
+    border-radius: 1px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .attr-bar-fill {
+    height: 100%;
+    border-radius: 1px;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  /* TAGS */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border: 1px solid rgba(240,234,216,0.15);
+    border-radius: 1px;
+    color: var(--muted);
+  }
+
+  /* COMPARISON TABLE */
+  .compare-section {
+    padding: 80px 40px;
+    border-top: 1px solid rgba(240,234,216,0.06);
+  }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+    font-size: 13px;
+  }
+
+  .compare-table th {
+    font-family: 'Courier Prime', monospace;
+    font-size: 8px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(240,234,216,0.12);
+    font-weight: 400;
+  }
+
+  .compare-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(240,234,216,0.05);
+    color: rgba(240,234,216,0.75);
+    vertical-align: top;
+    font-size: 13px;
+  }
+
+  .compare-table tr:hover td {
+    background: rgba(240,234,216,0.02);
+  }
+
+  .compare-table td:first-child {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--cream);
+    font-weight: 700;
+  }
+
+  .dot-rating {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+  }
+
+  .dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+  }
+
+  .dot.on { opacity: 1; }
+  .dot.off { opacity: 0.15; }
+
+  /* SYNTHESIS */
+  .synthesis {
+    padding: 100px 40px;
+    border-top: 1px solid rgba(240,234,216,0.06);
+  }
+
+  .synthesis-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(240,234,216,0.06);
+    margin-top: 50px;
+    border: 1px solid rgba(240,234,216,0.06);
+  }
+
+  .synth-item {
+    background: var(--ink);
+    padding: 32px 28px;
+  }
+
+  .synth-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: rgba(240,234,216,0.08);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .synth-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+
+  .synth-body {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  /* MIND GAMES CALLOUT */
+  .mg-callout {
+    margin: 60px 0 0;
+    padding: 40px;
+    border: 1px solid rgba(204,51,51,0.3);
+    position: relative;
+    background: rgba(204,51,51,0.03);
+  }
+
+  .mg-callout::before {
+    content: 'MIND GAMES — ANALYSIS';
+    font-family: 'Courier Prime', monospace;
+    font-size: 8px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--mindgames);
+    position: absolute;
+    top: -7px;
+    left: 24px;
+    background: var(--ink);
+    padding: 0 8px;
+  }
+
+  .mg-callout p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(240,234,216,0.75);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 60px 40px;
+    border-top: 1px solid rgba(240,234,216,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--muted);
+    font-family: 'Courier Prime', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .hero { padding: 80px 20px 50px; }
+    .section-intro, .houses, .compare-section, .synthesis { padding-left: 20px; padding-right: 20px; }
+    .house { grid-template-columns: 1fr; }
+    .house-left { padding-right: 0; border-right: none; padding-bottom: 40px; border-bottom: 1px solid rgba(240,234,216,0.06); margin-bottom: 40px; }
+    .house-right { padding-left: 0; }
+    .synthesis-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-cluster">
+    <span class="nav-title">ARX Research — Fragrance Industry</span>
+    <div class="nav-dot"></div>
+    <span class="nav-title">Web Design Atlas 2025</span>
+  </div>
+  <div class="nav-twd">
+    <a href="index.html">El Último</a>
+    <a href="studio.html">Studio</a>
+    <a href="../index.html">Dealer</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-kicker">Deep Dive · Volume 01</p>
+  <h1 class="hero-title">
+    What their<br>
+    websites <em>say</em><br>
+    about them
+  </h1>
+  <p class="hero-sub">
+    A comparative analysis of how the leading niche and luxury fragrance houses translate brand identity into digital experience — and what separates a $400 bottle from a $60 one before you ever smell it.
+  </p>
+  <div class="hero-scroll">scroll to explore</div>
+</section>
+
+<!-- INTRO -->
+<section class="section-intro">
+  <p class="section-label">Context</p>
+  <h2 class="section-heading">The Problem of Selling Smell</h2>
+  <p class="section-body">
+    Fragrance is the hardest luxury category to sell online. You can't transmit olfactory information through a screen. So the website becomes the entire argument — it has to make you believe in the world of the scent before you've experienced the scent itself. The brands that do this best aren't really selling perfume on their websites. They're selling a worldview.
+  </p>
+</section>
+
+<!-- HOUSES -->
+<div class="houses">
+
+  <!-- BYREDO -->
+  <div class="house" data-house>
+    <div class="house-left">
+      <p class="house-index">01 / 08</p>
+      <h2 class="house-name">Byredo</h2>
+      <p class="house-tagline">Stockholm minimalism weaponized as luxury signal</p>
+      <div class="house-accent-bar" style="background: var(--byredo);"></div>
+      <p class="house-desc">
+        Byredo's site is the platonic ideal of Scandinavian restraint applied to luxury e-commerce. Pure white or near-black backgrounds, enormous photography with nothing competing for attention, and typography so stripped back it borders on silence. The navigation is flat — everything accessible in one click. No gimmicks. No parallax. No loud hero animations.
+      </p>
+      <p class="house-desc">
+        What's masterful is the restraint of it. The product bottle <em>is</em> the visual. They photograph bottles like fine art objects with controlled light and heavy shadows. The copy is short and almost literary — evocative noun phrases, no fragrance-wheel jargon. It says "we don't need to explain ourselves."
+      </p>
+      <div class="house-verdict">
+        <strong>Verdict</strong>
+        Their site works because Byredo's bottle shapes are already sculptural enough to carry the page. Minimalism here isn't laziness — it's a position. The website is as designed as the product.
+      </div>
+      <div class="tags">
+        <span class="tag">White Ground</span>
+        <span class="tag">Editorial Photo</span>
+        <span class="tag">Flat Nav</span>
+        <span class="tag">No Scroll Tricks</span>
+        <span class="tag">Helvetica-adjacent</span>
+      </div>
+    </div>
+    <div class="house-right">
+      <div class="attrs">
+        <div class="attr-row">
+          <div class="attr">
+            <span class="attr-label">Visual Complexity</span>
+            <span class="attr-value">Very Low — intentionally bare</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 15%; background: var(--byredo);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">Typography Strength</span>
+            <span class="attr-value">High — silence is the message</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 88%; background: var(--byredo);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">Storytelling Depth</span>
+            <span class="attr-value">Medium — implied, not stated</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 50%; background: var(--byredo);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">eComm UX Quality</span>
+            <span class="attr-value">Excellent — frictionless</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 92%; background: var(--byredo);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">Brand Distinctiveness</span>
+            <span class="attr-value">Very High — instantly recognizable</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 90%; background: var(--byredo);"></div></div>
+          </div>
+        </div>
+        <div class="house-verdict" style="margin-top: 20px;">
+          <strong>Design School</strong>
+          Stockholm / Modernist / Swiss Grid
+        </div>
+        <div class="house-verdict" style="margin-top: 12px;">
+          <strong>Primary Differentiator</strong>
+          The website embodies exactly what Byredo sells: the feeling that you have taste so refined you don't need anything explained to you.
+        </div>
+        <div class="house-verdict" style="margin-top: 12px;">
+          <strong>Weakness</strong>
+          Can read as cold or inaccessible. Newcomers to niche fragrance often bounce — the site rewards prior knowledge.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LE LABO -->
+  <div class="house" data-house>
+    <div class="house-left">
+      <p class="house-index">02 / 08</p>
+      <h2 class="house-name">Le Labo</h2>
+      <p class="house-tagline">Anti-luxury luxury — the lab as manifesto</p>
+      <div class="house-accent-bar" style="background: var(--lelabo);"></div>
+      <p class="house-desc">
+        Le Labo's visual identity is one of the most coherent in fragrance. Industrial pharmacy meets Lower East Side. The site leans dark — near-black backgrounds, raw photography of labs and hands and process. Typography uses a distinctive hand-labeled aesthetic that references pharmaceutical packaging. Products are named with chemical-catalog logic: Santal 33, Rose 31, Thé Noir 29.
+      </p>
+      <p class="house-desc">
+        The website's key move is making <em>labor</em> visible. You see hands mixing. You see bottles being labeled. Every page communicates: this is handmade, this is real, the people who made it are known to us. The city-exclusive collection (you can only buy certain scents in certain cities) is genius UX design at the product level — it creates genuine scarcity through place.
+      </p>
+      <div class="house-verdict">
+        <strong>Verdict</strong>
+        Le Labo built the anti-marketing luxury brand and its site executes the brief perfectly. It's the most anti-commercial looking site of any brand doing $200M+ in annual sales.
+      </div>
+      <div class="tags">
+        <span class="tag">Dark Palette</span>
+        <span class="tag">Craft Photography</span>
+        <span class="tag">Pharmaceutical Ref</span>
+        <span class="tag">Process-Forward</span>
+        <span class="tag">Raw Texture</span>
+      </div>
+    </div>
+    <div class="house-right">
+      <div class="attrs">
+        <div class="attr-row">
+          <div class="attr">
+            <span class="attr-label">Visual Complexity</span>
+            <span class="attr-value">Low-Medium — intentional rawness</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 35%; background: var(--lelabo);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">Typography Strength</span>
+            <span class="attr-value">Very High — system is the identity</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 95%; background: var(--lelabo);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">Storytelling Depth</span>
+            <span class="attr-value">Very High — process is the story</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 92%; background: var(--lelabo);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">eComm UX Quality</span>
+            <span class="attr-value">Good — occasionally heavy</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 72%; background: var(--lelabo);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">Brand Distinctiveness</span>
+            <span class="attr-value">Maximum — totally unmistakable</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 98%; background: var(--lelabo);"></div></div>
+          </div>
+        </div>
+        <div class="house-verdict" style="margin-top: 20px;">
+          <strong>Design School</strong>
+          NYC Industrial / Apothecary / Anti-Design
+        </div>
+        <div class="house-verdict" style="margin-top: 12px;">
+          <strong>Primary Differentiator</strong>
+          The label IS the design system. Every product page is personalized because every bottle gets your name on it — the site's checkout flow is part of the brand ritual.
+        </div>
+        <div class="house-verdict" style="margin-top: 12px;">
+          <strong>Weakness</strong>
+          Estée Lauder acquisition has slowly softened the edges. The rawness is increasingly performed rather than genuine.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FRÉDÉRIC MALLE -->
+  <div class="house" data-house>
+    <div class="house-left">
+      <p class="house-index">03 / 08</p>
+      <h2 class="house-name">Frédéric Malle</h2>
+      <p class="house-tagline">Publishing house for perfumers — editorial supremacy</p>
+      <div class="house-accent-bar" style="background: var(--malle);"></div>
+      <p class="house-desc">
+        Malle's site is the most literary in fragrance. That's intentional — the brand positions itself as a publisher, not a perfume house. Master perfumers' names are on the bottles, faces on the inner lid, bios on the product pages. The visual system references fine art book design: generous white space, clean serif hierarchy, portrait photography that reads like a literary magazine.
+      </p>
+      <p class="house-desc">
+        The site uses a distinctive red accent — not the lurid red of luxury automobiles but something more like the red of a first-edition spine. Copy is long-form and unapologetically dense. They assume a literate customer. Product descriptions are essays, not bullet points.
+      </p>
+      <div class="house-verdict">
+        <strong>Verdict</strong>
+        No other fragrance brand on earth could pull off their product page copy length. It works because the audience has self-selected into being the kind of person who reads it. The site teaches you to be a Malle customer.
+      </div>
+      <div class="tags">
+        <span class="tag">White + Red</span>
+        <span class="tag">Editorial Serif</span>
+        <span class="tag">Long-Form Copy</span>
+        <span class="tag">Author Portraits</span>
+        <span class="tag">Book Publishing DNA</span>
+      </div>
+    </div>
+    <div class="house-right">
+      <div class="attrs">
+        <div class="attr-row">
+          <div class="attr">
+            <span class="attr-label">Visual Complexity</span>
+            <span class="attr-value">Low — pure editorial restraint</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 20%; background: var(--malle);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">Typography Strength</span>
+            <span class="attr-value">Exceptional — the whole brand</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 97%; background: var(--malle);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">Storytelling Depth</span>
+            <span class="attr-value">Maximum — essays, not blurbs</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 99%; background: var(--malle);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">eComm UX Quality</span>
+            <span class="attr-value">Adequate — secondary to content</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 60%; background: var(--malle);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">Brand Distinctiveness</span>
+            <span class="attr-value">Extremely High</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 96%; background: var(--malle);"></div></div>
+          </div>
+        </div>
+        <div class="house-verdict" style="margin-top: 20px;">
+          <strong>Design School</strong>
+          Parisian Publishing / Galerie Lafayette Fine Books
+        </div>
+        <div class="house-verdict" style="margin-top: 12px;">
+          <strong>Primary Differentiator</strong>
+          They give the perfumers authorship. The website exists to make you trust the perfumer's name the way you'd trust an author's name. It's the only fragrance brand that feels like a literary institution.
+        </div>
+        <div class="house-verdict" style="margin-top: 12px;">
+          <strong>Weakness</strong>
+          Dense enough to feel intimidating. Also now Estée Lauder owned — same trajectory risk as Le Labo.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MFK -->
+  <div class="house" data-house>
+    <div class="house-left">
+      <p class="house-index">04 / 08</p>
+      <h2 class="house-name">Maison Francis Kurkdjian</h2>
+      <p class="house-tagline">Parisian haute parfumerie meets architectural color theory</p>
+      <div class="house-accent-bar" style="background: var(--mfk);"></div>
+      <p class="house-desc">
+        MFK sits at the intersection of fashion house luxury and true niche artisanship. The site reflects this — it's more "produced" than Le Labo or Malle, with higher-budget photography and a more structured layout. Color plays a major role: fragrance families get distinct color palettes. Baccarat Rouge 540 gets its own visual universe — the gold and amber tones of the packaging carry into every editorial frame.
+      </p>
+      <p class="house-desc">
+        Navigation is clear and organized. The "creation" sections give Kurkdjian himself a visible presence — bespoke services, commissions, the backstory. LVMH-owned now, but the site still reads as a craftsperson's atelier rather than a corporation's catalog.
+      </p>
+      <div class="house-verdict">
+        <strong>Verdict</strong>
+        Probably the best balance of luxury brand production value and genuine artisanal storytelling. BR540 is so culturally dominant that their site has to hold that weight — and it mostly does.
+      </div>
+      <div class="tags">
+        <span class="tag">Color-Coded Lines</span>
+        <span class="tag">Atelier Framing</span>
+        <span class="tag">High Production</span>
+        <span class="tag">Bespoke Section</span>
+        <span class="tag">Gold Tones</span>
+      </div>
+    </div>
+    <div class="house-right">
+      <div class="attrs">
+        <div class="attr-row">
+          <div class="attr">
+            <span class="attr-label">Visual Complexity</span>
+            <span class="attr-value">Medium-High — produced, not busy</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 62%; background: var(--mfk);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">Typography Strength</span>
+            <span class="attr-value">High — Parisian magazine register</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 82%; background: var(--mfk);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">Storytelling Depth</span>
+            <span class="attr-value">High — perfumer as protagonist</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 80%; background: var(--mfk);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">eComm UX Quality</span>
+            <span class="attr-value">Very Good — LVMH infrastructure</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 85%; background: var(--mfk);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">Brand Distinctiveness</span>
+            <span class="attr-value">High — BR540 does a lot of work</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 80%; background: var(--mfk);"></div></div>
+          </div>
+        </div>
+        <div class="house-verdict" style="margin-top: 20px;">
+          <strong>Design School</strong>
+          Parisian Haute Couture / Color-System Branding
+        </div>
+        <div class="house-verdict" style="margin-top: 12px;">
+          <strong>Primary Differentiator</strong>
+          Color as wayfinding. Each collection's identity is immediately legible from its palette. The bespoke service section is the most aspirational section of any fragrance website.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CREED -->
+  <div class="house" data-house>
+    <div class="house-left">
+      <p class="house-index">05 / 08</p>
+      <h2 class="house-name">Creed</h2>
+      <p class="house-tagline">260 years of legacy, dressed in contemporary digital clothes</p>
+      <div class="house-accent-bar" style="background: var(--creed);"></div>
+      <p class="house-desc">
+        Creed's challenge is translating the oldest major fragrance house into digital without feeling like a museum. They lean into heritage hard — sepia photography, parchment tones, royal crest, old English typography. The website is one of the most "produced" in the space post-Kering acquisition: large campaign imagery, very clean navigation, Aventus given its own landing experience.
+      </p>
+      <p class="house-desc">
+        The site's tone is noble without being stuffy. Heritage is the argument — they include timelines, historical context, the founding story as Saville Row tailors. It works because Creed's provenance actually is exceptional. The site's job is mostly to get out of the way of that story.
+      </p>
+      <div class="house-verdict">
+        <strong>Verdict</strong>
+        Most improved over the last 3 years, likely Kering money at work. The new Creed site is clearly aspiring to the Gucci/Bottega tier of luxury digital design. Not quite there, but close.
+      </div>
+      <div class="tags">
+        <span class="tag">Heritage Photography</span>
+        <span class="tag">Parchment/Gold</span>
+        <span class="tag">Royal Crest</span>
+        <span class="tag">Timeline Sections</span>
+        <span class="tag">Campaign-Forward</span>
+      </div>
+    </div>
+    <div class="house-right">
+      <div class="attrs">
+        <div class="attr-row">
+          <div class="attr">
+            <span class="attr-label">Visual Complexity</span>
+            <span class="attr-value">High — campaign production values</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 75%; background: var(--creed);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">Typography Strength</span>
+            <span class="attr-value">Medium-High — traditional serif</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 68%; background: var(--creed);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">Storytelling Depth</span>
+            <span class="attr-value">High — heritage as primary asset</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 85%; background: var(--creed);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">eComm UX Quality</span>
+            <span class="attr-value">Very Good — post-acquisition upgrade</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 82%; background: var(--creed);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">Brand Distinctiveness</span>
+            <span class="attr-value">High — Aventus is a cultural object</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 86%; background: var(--creed);"></div></div>
+          </div>
+        </div>
+        <div class="house-verdict" style="margin-top: 20px;">
+          <strong>Design School</strong>
+          British Heritage / Royal Warrant Luxury
+        </div>
+        <div class="house-verdict" style="margin-top: 12px;">
+          <strong>Primary Differentiator</strong>
+          The provenance timeline. No other fragrance house can credibly say "we made this for royalty in 1760." The site knows this is the whole argument.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AMOUAGE -->
+  <div class="house" data-house>
+    <div class="house-left">
+      <p class="house-index">06 / 08</p>
+      <h2 class="house-name">Amouage</h2>
+      <p class="house-tagline">Middle Eastern opulence, globally translated</p>
+      <div class="house-accent-bar" style="background: var(--amouage);"></div>
+      <p class="house-desc">
+        Amouage's site is the most maximalist of the elite tier. Gold tones, deep jewel colors, ornate bottle photography, rich textile backgrounds. Where Byredo whispers, Amouage declaims. The site knows its audience: collectors, serious enthusiasts, Middle Eastern luxury consumers who don't equate restraint with taste.
+      </p>
+      <p class="house-desc">
+        The product pages are dense with information — note pyramids, olfactive families, perfumer credits, campaign imagery. There's a theatrical quality to the whole thing. Each fragrance is positioned like an operatic production, not a lifestyle accessory.
+      </p>
+      <div class="house-verdict">
+        <strong>Verdict</strong>
+        Amouage's site reflects their product philosophy: more is more, and the right customer knows it. In a category dominated by minimalism cosplay, they're one of the only brands that's genuinely maximalist. Refreshing.
+      </div>
+      <div class="tags">
+        <span class="tag">Gold + Jewel Tones</span>
+        <span class="tag">Ornate Photography</span>
+        <span class="tag">Note Pyramids</span>
+        <span class="tag">Theatrical Framing</span>
+        <span class="tag">Dense Product Pages</span>
+      </div>
+    </div>
+    <div class="house-right">
+      <div class="attrs">
+        <div class="attr-row">
+          <div class="attr">
+            <span class="attr-label">Visual Complexity</span>
+            <span class="attr-value">Very High — unafraid of richness</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 90%; background: var(--amouage);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">Typography Strength</span>
+            <span class="attr-value">Medium — type serves image here</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 52%; background: var(--amouage);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">Storytelling Depth</span>
+            <span class="attr-value">High — cultural context rich</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 82%; background: var(--amouage);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">eComm UX Quality</span>
+            <span class="attr-value">Medium — density can overwhelm</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 60%; background: var(--amouage);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">Brand Distinctiveness</span>
+            <span class="attr-value">Very High — Oman origin is unique</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 88%; background: var(--amouage);"></div></div>
+          </div>
+        </div>
+        <div class="house-verdict" style="margin-top: 20px;">
+          <strong>Design School</strong>
+          Middle Eastern Court Luxury / Operatic Visual Language
+        </div>
+        <div class="house-verdict" style="margin-top: 12px;">
+          <strong>Primary Differentiator</strong>
+          The only elite fragrance brand not performing minimalism. The maximalism is a genuine cultural position, not an aesthetic choice made in a boardroom.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NISHANE -->
+  <div class="house" data-house>
+    <div class="house-left">
+      <p class="house-index">07 / 08</p>
+      <h2 class="house-name">Nishane</h2>
+      <p class="house-tagline">Turkish artisanship, art-forward identity, underdog energy</p>
+      <div class="house-accent-bar" style="background: var(--nishane);"></div>
+      <p class="house-desc">
+        Nishane punches well above its weight on website design. The visual language is art-forward — each fragrance gets illustrated campaign artwork, often abstract and painterly, that communicates the scent character without photographs. The layout is clean but has personality. Typography mixes clean sans with expressive display treatments.
+      </p>
+      <p class="house-desc">
+        The brand leans into its Istanbul origins without making it a costume. The artisanal details — human names, small-batch mentions, ingredient sourcing — are present but not overwrought. It reads as genuinely crafted rather than curated to look crafted.
+      </p>
+      <div class="house-verdict">
+        <strong>Verdict</strong>
+        Best value-to-design ratio in the category. A brand spending a fraction of what Creed or MFK spends on digital but producing a site that feels equally considered.
+      </div>
+      <div class="tags">
+        <span class="tag">Illustrated Campaigns</span>
+        <span class="tag">Art-Forward</span>
+        <span class="tag">Istanbul Identity</span>
+        <span class="tag">Mixed Typography</span>
+        <span class="tag">Expressive Color</span>
+      </div>
+    </div>
+    <div class="house-right">
+      <div class="attrs">
+        <div class="attr-row">
+          <div class="attr">
+            <span class="attr-label">Visual Complexity</span>
+            <span class="attr-value">Medium — controlled expressiveness</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 55%; background: var(--nishane);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">Typography Strength</span>
+            <span class="attr-value">High — interesting pairing</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 78%; background: var(--nishane);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">Storytelling Depth</span>
+            <span class="attr-value">Medium-High — art carries it</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 72%; background: var(--nishane);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">eComm UX Quality</span>
+            <span class="attr-value">Good — clear, readable, fast</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 78%; background: var(--nishane);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">Brand Distinctiveness</span>
+            <span class="attr-value">High — illustrations are signature</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 82%; background: var(--nishane);"></div></div>
+          </div>
+        </div>
+        <div class="house-verdict" style="margin-top: 20px;">
+          <strong>Design School</strong>
+          Istanbul Contemporary Art / Mixed-Media Brand Identity
+        </div>
+        <div class="house-verdict" style="margin-top: 12px;">
+          <strong>Primary Differentiator</strong>
+          The illustrated product art. No other major niche house uses original painting/illustration as primary visual language. It makes their catalog feel like a gallery.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MIND GAMES -->
+  <div class="house" data-house>
+    <div class="house-left">
+      <p class="house-index">08 / 08</p>
+      <h2 class="house-name" style="color: var(--mindgames);">Mind Games</h2>
+      <p class="house-tagline">Chess as cosmology — the dark horse newcomer</p>
+      <div class="house-accent-bar" style="background: var(--mindgames);"></div>
+      <p class="house-desc">
+        Mind Games has done something clever: built a cohesive conceptual universe around chess that gives them infinite content infrastructure. Every fragrance = a move. Every collection = a match. The visual vocabulary is deep black, red accent, heavy glass bottle silhouettes. The unboxing experience (as in your photos) is the product — that matte black box with the red vertical text <em>is</em> the brand statement.
+      </p>
+      <p class="house-desc">
+        The site is clean and Shopify-premium. Heavy hero imagery, mostly dark photography. The chess concept is legible in the navigation structure — collections are named for game phases. Copy leans into the strategy/intellect positioning without overexplaining it. It knows it's selling to people who want to feel strategic about their taste.
+      </p>
+      <div class="house-verdict">
+        <strong>Verdict</strong>
+        Strong concept, competently executed. The biggest opportunity they're not fully exploiting: the chess system could generate infinite digital experiences — interactive boards, opening-to-scent mapping, game notation as copy. The site is good but the idea is better than the site yet.
+      </div>
+      <div class="tags">
+        <span class="tag">Near-Black Ground</span>
+        <span class="tag">Red Accent</span>
+        <span class="tag">Chess Nomenclature</span>
+        <span class="tag">Heavy Glass Bottles</span>
+        <span class="tag">Shopify Premium</span>
+      </div>
+    </div>
+    <div class="house-right">
+      <div class="attrs">
+        <div class="attr-row">
+          <div class="attr">
+            <span class="attr-label">Visual Complexity</span>
+            <span class="attr-value">Medium — dark and considered</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 48%; background: var(--mindgames);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">Typography Strength</span>
+            <span class="attr-value">Medium — clean but not distinctive</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 55%; background: var(--mindgames);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">Storytelling Depth</span>
+            <span class="attr-value">High — concept is strong</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 80%; background: var(--mindgames);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">eComm UX Quality</span>
+            <span class="attr-value">Very Good — Shopify foundation solid</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 84%; background: var(--mindgames);"></div></div>
+          </div>
+          <div class="attr">
+            <span class="attr-label">Brand Distinctiveness</span>
+            <span class="attr-value">High — chess concept is ownable</span>
+            <div class="attr-bar-track"><div class="attr-bar-fill" style="width: 82%; background: var(--mindgames);"></div></div>
+          </div>
+        </div>
+        <div class="house-verdict" style="margin-top: 20px; border-color: rgba(204,51,51,0.25);">
+          <strong>Design School</strong>
+          NYC Luxury Concept Brand / Dark Editorial
+        </div>
+        <div class="house-verdict" style="margin-top: 12px; border-color: rgba(204,51,51,0.25);">
+          <strong>Primary Differentiator</strong>
+          The concept universe has more depth than almost any 3-year-old brand. Chess gives them infinite naming, narrative, and campaign infrastructure without ever needing to reinvent themselves.
+        </div>
+        <div class="house-verdict" style="margin-top: 12px; border-color: rgba(204,51,51,0.25);">
+          <strong>Untapped Opportunity</strong>
+          The site doesn't yet use the interactive dimension of chess at all. An interactive board where moves map to scent profiles, or a "what opening are you?" quiz, would convert the concept from aesthetic to experience.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- COMPARISON TABLE -->
+<section class="compare-section">
+  <p class="section-label">Matrix View</p>
+  <h2 class="section-heading">Side by Side</h2>
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>House</th>
+        <th>Primary Palette</th>
+        <th>Typography Register</th>
+        <th>Core Design Move</th>
+        <th>Concept Depth</th>
+        <th>Conglomerate Owner</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Byredo</td>
+        <td>White / near-black</td>
+        <td>Sans, wide-tracked</td>
+        <td>Silence as luxury signal</td>
+        <td class="dot-rating">
+          <div class="dot on" style="background:var(--byredo)"></div>
+          <div class="dot on" style="background:var(--byredo)"></div>
+          <div class="dot on" style="background:var(--byredo)"></div>
+          <div class="dot on" style="background:var(--byredo)"></div>
+          <div class="dot off" style="background:var(--byredo)"></div>
+        </td>
+        <td>Puig (2022)</td>
+      </tr>
+      <tr>
+        <td>Le Labo</td>
+        <td>Near-black / raw kraft</td>
+        <td>Pharma label, mono</td>
+        <td>Labor made visible</td>
+        <td class="dot-rating">
+          <div class="dot on" style="background:var(--lelabo)"></div>
+          <div class="dot on" style="background:var(--lelabo)"></div>
+          <div class="dot on" style="background:var(--lelabo)"></div>
+          <div class="dot on" style="background:var(--lelabo)"></div>
+          <div class="dot on" style="background:var(--lelabo)"></div>
+        </td>
+        <td>Estée Lauder (2014)</td>
+      </tr>
+      <tr>
+        <td>Frédéric Malle</td>
+        <td>White / red spine</td>
+        <td>Serif, editorial, dense</td>
+        <td>Perfumer as named author</td>
+        <td class="dot-rating">
+          <div class="dot on" style="background:var(--malle)"></div>
+          <div class="dot on" style="background:var(--malle)"></div>
+          <div class="dot on" style="background:var(--malle)"></div>
+          <div class="dot on" style="background:var(--malle)"></div>
+          <div class="dot on" style="background:var(--malle)"></div>
+        </td>
+        <td>Estée Lauder (2015)</td>
+      </tr>
+      <tr>
+        <td>Maison Francis Kurkdjian</td>
+        <td>White / per-collection</td>
+        <td>Parisian serif, spaced</td>
+        <td>Color codes the catalog</td>
+        <td class="dot-rating">
+          <div class="dot on" style="background:var(--mfk)"></div>
+          <div class="dot on" style="background:var(--mfk)"></div>
+          <div class="dot on" style="background:var(--mfk)"></div>
+          <div class="dot on" style="background:var(--mfk)"></div>
+          <div class="dot off" style="background:var(--mfk)"></div>
+        </td>
+        <td>LVMH (2017)</td>
+      </tr>
+      <tr>
+        <td>Creed</td>
+        <td>Parchment / dark green</td>
+        <td>Heritage serif, crested</td>
+        <td>Provenance as argument</td>
+        <td class="dot-rating">
+          <div class="dot on" style="background:var(--creed)"></div>
+          <div class="dot on" style="background:var(--creed)"></div>
+          <div class="dot on" style="background:var(--creed)"></div>
+          <div class="dot on" style="background:var(--creed)"></div>
+          <div class="dot off" style="background:var(--creed)"></div>
+        </td>
+        <td>Kering (2023)</td>
+      </tr>
+      <tr>
+        <td>Amouage</td>
+        <td>Gold / deep jewel</td>
+        <td>Ornate, image-led</td>
+        <td>Maximalism without apology</td>
+        <td class="dot-rating">
+          <div class="dot on" style="background:var(--amouage)"></div>
+          <div class="dot on" style="background:var(--amouage)"></div>
+          <div class="dot on" style="background:var(--amouage)"></div>
+          <div class="dot on" style="background:var(--amouage)"></div>
+          <div class="dot off" style="background:var(--amouage)"></div>
+        </td>
+        <td>L'Oréal minority (2025)</td>
+      </tr>
+      <tr>
+        <td>Nishane</td>
+        <td>Art-driven per release</td>
+        <td>Mixed — expressive</td>
+        <td>Illustration as primary visual</td>
+        <td class="dot-rating">
+          <div class="dot on" style="background:var(--nishane)"></div>
+          <div class="dot on" style="background:var(--nishane)"></div>
+          <div class="dot on" style="background:var(--nishane)"></div>
+          <div class="dot off" style="background:var(--nishane)"></div>
+          <div class="dot off" style="background:var(--nishane)"></div>
+        </td>
+        <td>Independent</td>
+      </tr>
+      <tr>
+        <td style="color:var(--mindgames)">Mind Games ↗</td>
+        <td>Near-black / red</td>
+        <td>Clean sans, wide-tracked</td>
+        <td>Chess as content universe</td>
+        <td class="dot-rating">
+          <div class="dot on" style="background:var(--mindgames)"></div>
+          <div class="dot on" style="background:var(--mindgames)"></div>
+          <div class="dot on" style="background:var(--mindgames)"></div>
+          <div class="dot on" style="background:var(--mindgames)"></div>
+          <div class="dot off" style="background:var(--mindgames)"></div>
+        </td>
+        <td>Independent (founded 2022)</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- SYNTHESIS -->
+<section class="synthesis">
+  <p class="section-label">What differentiates them</p>
+  <h2 class="section-heading">Six Things That Actually Matter</h2>
+  <div class="synthesis-grid">
+    <div class="synth-item">
+      <div class="synth-num">01</div>
+      <div class="synth-title">Concept Depth</div>
+      <div class="synth-body">The brands with the strongest sites aren't selling a smell — they're selling a worldview. Le Labo sells craft labor. Malle sells authorship. Chess (Mind Games) sells strategy as identity. The concept has to generate infinite content without becoming exhausted. Shallow concepts hit a ceiling fast.</div>
+    </div>
+    <div class="synth-item">
+      <div class="synth-num">02</div>
+      <div class="synth-title">Typography as Identity</div>
+      <div class="synth-body">Le Labo's pharmaceutical label <em>is</em> their brand. Malle's serif density <em>is</em> their brand. The best fragrance sites have a typographic system so specific that you'd recognize a single page with no logo. Typography in this category doesn't just set tone — it makes the argument for why the product is worth $300.</div>
+    </div>
+    <div class="synth-item">
+      <div class="synth-num">03</div>
+      <div class="synth-title">Who is Made Visible</div>
+      <div class="synth-body">Every brand makes a choice: show the bottle, show the lifestyle, show the place, show the person. Malle shows the perfumer. Le Labo shows the hands. Creed shows the lineage. Byredo shows almost nothing. The choice of what to make visible is the most revealing design decision a fragrance brand makes.</div>
+    </div>
+    <div class="synth-item">
+      <div class="synth-num">04</div>
+      <div class="synth-title">Conglomerate Trajectory</div>
+      <div class="synth-body">Almost every elite niche house is now owned by LVMH, Kering, Estée Lauder, or Puig. The sites pre and post acquisition often look better — more budget — but feel less urgent. The rawness that made them compelling gets professionally smoothed out. Independent brands (Nishane, early Mind Games) have a scrappiness that reads as authenticity because it is.</div>
+    </div>
+    <div class="synth-item">
+      <div class="synth-num">05</div>
+      <div class="synth-title">The Product Page Problem</div>
+      <div class="synth-body">Fragrance has no add-to-cart shortcut. You need to be convinced before you buy. The best product pages build a world — note pyramids, ingredient sourcing, occasion framing, perfumer voice — that makes clicking "add to cart" feel like joining something rather than purchasing something. Copy length is directly proportional to perceived quality.</div>
+    </div>
+    <div class="synth-item">
+      <div class="synth-num">06</div>
+      <div class="synth-title">Minimalism vs Authenticity</div>
+      <div class="synth-body">The trap is thinking minimalism = luxury. Byredo minimalism works because it's genuine to their Scandinavian DNA. A brand from Oman (Amouage) doing Byredo minimalism would be incoherent. The question isn't "how minimal should we be?" — it's "what aesthetic is true to where we came from?" Mind Games' darkness is true to chess. That's why it lands.</div>
+    </div>
+  </div>
+
+  <div class="mg-callout">
+    <p>
+      Mind Games' biggest web design gap is interactivity. Chess is inherently interactive — it has moves, systems, openings, endgames. Their site treats chess as a visual metaphor when it could be a functional experience. Imagine a site where you make an opening move and get routed to a scent profile. Or a quiz: "Are you an aggressive attacker or a patient positional player?" that lands you on Queenside vs Kingside. The concept is so generative that the current site leaves most of it on the table. For a 3-year-old brand, that's not a criticism — that's the roadmap.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <span>ARX Research · Fragrance Industry Analysis</span>
+  <span>Web Design Atlas · 2025</span>
+  <span>Elryan Dalren</span>
+</footer>
+
+<script>
+  // Intersection observer for house card animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('[data-house]').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
